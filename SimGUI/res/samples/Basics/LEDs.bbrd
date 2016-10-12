@@ -1,0 +1,16 @@
+<breadboard>
+  <setting key="numberOfBreadboards" value="1" />
+  <setting key="simulationSpeed" value="1" />
+  <setting key="positiveRailVoltage" value="5" />
+  <setting key="negativeRailVoltage" value="-5" />
+  <component ref="VR1" type="Potentiometer" startX="75" startY="150" angle="0" value="1000" setpoint="0" />
+  <component ref="R1" type="Resistor" startX="75" startY="135" angle="0" value="100" orientation="vert" length="-5" />
+  <component ref="D1" type="LED" startX="180" startY="225" angle="0" model="Red" />
+  <component ref="D2" type="LED" startX="270" startY="225" angle="180" model="Blue" />
+  <component ref="VR2" type="Potentiometer" startX="375" startY="150" angle="0" value="10000" setpoint="0.746835443037974" />
+  <component ref="R2" type="Resistor" startX="375" startY="135" angle="0" value="100" orientation="vert" length="-5" />
+  <wire startX="196" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+  <wire startX="181" startY="211" length="-6" orientation="horiz" colour="#FF8B008B" />
+  <wire startX="256" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+  <wire startX="271" startY="211" length="6" orientation="horiz" colour="#FFFFFF00" />
+</breadboard>

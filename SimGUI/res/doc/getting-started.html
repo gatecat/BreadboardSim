@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<title>Getting Started</title>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content">
+<h1>Getting Started</h1>
+<p><a href="index.html">Back to Contents</a></p>
+<p>This guide is intended for first time users of Breadboard Simulator. It will show you, step by step, how to create your first circuit - a 555 timer configured to blink an LED.</p>
+<p>First, open Breadboard Simulator so that a blank breadboard appears on screen. You should then save the circuit to a new file, by clicking on the save icon (<img src="images/icons/save.png" class="inline"/>), opening the "File" menu and clicking on the "Save" item, or pressing Ctrl+S. Choose a location and name for your file, and then click the "Save" button. It is suggested that you then save your work at regular intervals using one of these three methods, to minimise data loss in case of the computer or application crashing.</p>
+<h3>Placing Components</h3>
+The first component to be placed is the 555 Timer IC. To place this, first click on arrow next to "Analog ICs" in the left pane (marked as 1 on the below screenshot) to open this category, then on the "555 Timer" item (marked as 2 on the below screenshot).</p><p>You will now enter "Place Component" mode, where you can click on a breadboard hole to place a component there (in the case of ICs, this location will become the top left corner of the IC).</p> <p>In this case, place the component somewhere around the middle of the breadboard (the suggested location is marked as 3 on the screenshot.)</p>
+<div class="screenshot-container"><img class="screenshot" src="images/screenshots/gs-screenshot-1.png"/></div>
+<p>Four other components will need to be placed: a 47kΩ resistor, a 330Ω resistor, a 22µF capacitor and a red LED. The correct positions of these are shown on the diagram below. When placing a resistor, you will need to click twice: once at the position of the first lead, and then at the position of the second lead.</p><p>If you accidentally place an incorrect component, or a resistor of an incorrect length, right click on the component and select "Delete" to remove it from the circuit. If you place a component in the wrong position, click and drag the component to move it. To change the orientation of a component, right click on it and select the rotate option (note that this is not possible for some components).</p><p>Once you are finished placing the components, click on the Arrow button at the top to exit the "Place Component" tool and return to the "Select" tool.</p>
+<div class="screenshot-container"><img class="screenshot" src="images/screenshots/gs-screenshot-2.png"/></div>
+<h3>Placing Wires</h3>
+<p>Then, select the Wire tool (<img class="inline" src="images/icons/wire.png"/>) and place the wires as shown below. To place a wire, you must click twice - once for the first point of the wire, and again for the second. Wires can only be placed horizontally and vertically, not diagonally.</p><p>Because wire colours (except for wires connected to power rails) are randomly selected, the wires you create will be different colours to those shown in the screenshot. Wires that are connected together will always be the same colour (although two wires being the same colour does not necessarily imply that they are connected).</p>
+<div class="screenshot-container"><img class="screenshot" src="images/screenshots/gs-screenshot-3.png"/></div>
+<h3>Adding Oscilloscope Probes</h3>
+<p>Placing oscilloscope probes allows you to see the voltage-time graph at a point in real-time as the simulation runs. In this example, two oscilloscope probes will be placed - one measuring the voltage at the output of the 555 Timer IC, and another measuring the capacitor voltage.</p>
+<p>To place an oscilloscope probe, select the "Oscilloscope Probe" item from the components list. You will now return to "Place Component" mode. Click once on a hole to add an oscilloscope probe at that point.</p><p>First, place the probe at the output of the 555 Timer IC (marked as 1 on the below screenshot), then the probe measuring the capacitor's voltage (marked as 2). By following this order you will ensure the trace and probe colour you see are the same as in this guide.</p>
+<div class="screenshot-container"><img class="screenshot" src="images/screenshots/gs-screenshot-4.png"/></div>
+<h3>Running the Simulation</h3>
+<p>First, click the Arrow button (<img class="inline" src="images/icons/select.png"/>) to return to the Select tool. Then, click the Run button (<img class="inline" src="images/icons/run.png"/>) and the simulation will begin. Once the simulation starts, a graph window will appear, showing the oscilloscope traces for all of the probes you placed. Note that the circular part of each probe will change to the same colour as the oscilloscope trace at the start of the simulation. The LED will also flash on and off, as it would in real life. An example of the graph window is shown below.</p>
+<div class="screenshot-container"><img class="screenshot" src="images/screenshots/gs-screenshot-5.png"/></div>
+
+<p><a href="index.html">Back to Contents</a></p>
+</div>
+</html>

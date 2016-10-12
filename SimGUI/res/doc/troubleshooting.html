@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<title>Troubleshooting</title>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content">
+<h1>Troubleshooting</h1>
+<p><a href="index.html">Back to Contents</a></p>
+
+<h3>A Convergence Failure Error is Displayed</h3>
+<div class="screenshot-container-exsmall-left" style="max-width: 478px"><img class="screenshot" src="images/screenshots/convfail.png"/></div>
+<p>A convergence failure means that the simulator is unable to simulate the circuit, often due to it having no stable state (for example, a NOT gate with the input and output connected together). Although it will not force you to stop the simulation, it is important to note that the results after a convergence failure has occurred may not be accurate.</p>
+<p>Certain circuits, such as a latch made from NOR gates, will always cause a convergence failure at startup because they have no initial stable state on startup. In this case, the results will be invalid until the latch is set to a specific state.</p>
+
+<h3>User Interface is Slow or Unresponsive during Simulation</h3>
+<p>On some systems, where there are a large amount of transitions to be displayed on the graph view performance may be reduced. To resolve this issue several steps may be taken:</p>
+<ul>
+<li>Reduce the horizontal size of the graph by resizing the window</li>
+<li>Decrease the number of seconds per division</li>
+<li>Slow down the speed at which the circuit oscillates</li>
+<li>Close the graph view</li>
+</ul>
+
+<h3>"Failure to open file" Error is Displayed</h3>
+<div class="screenshot-container-exsmall-left" style="max-width: 492px"><img class="screenshot" src="images/screenshots/file-error.png"/></div>
+<p>This error message means that the simulator was unable to open the file. It will still try, where possible, to load the parts of the file it can understand,
+ but there will likely be missing or incorrect components or wires. There are a number of possible causes:</p>
+ <ul>
+ <li><strong>The file is not a Breadboard Simulator file.</strong> In this case, no circuit will load at all and an empty breadboard will be displayed.
+ Please note that Breadboard Simulator cannot open files made using other circuit simulation programs.</li>
+ <li><strong>The file has been corrupted.</strong> Depending on the nature of the corruption, either no circuit will load at all, or a partial circuit
+ will be loaded. In the former case, there is little that can be done unless a recent backup of the file exists (in which case, load the backup). In the latter case,
+ the best solution (unless there is an up to date backup) is to rebuild the missing parts of the circuit.</li>
+ <li><strong>The file is from a newer version of Breadboard Simulator.</strong> In this case, the error has occurred because the file contains components
+ or features that the version of Breadboard Simulator you are using does not understand. You will either need to open the circuit in the newer version of
+ Breadboard Simulator, or rebuild the missing parts of the circuit using components and features in the version of Breadboard Simulator you are using.</li>
+ </ul>
+ 
+ <h3>Input Data is rejected</h3>
+ <div class="screenshot-container-exsmall-left" style="max-width: 456px"><img class="screenshot" src="images/screenshots/valid-error.png"/></div>
+<p>In order to prevent invalid values being entered and causing a crash or data corruption, the program validates data to ensure it will not cause problems.
+This means that:</p>
+ <ul>
+ <li><strong>Component values and rail voltages must be valid numbers.</strong> Do not add any prefices or units - for component values, you can use the 
+ dropdown box to select an SI prefix (for example m, k, M, G, etc).</li>
+ <li><strong>Component values cannot be zero or negative.</strong> Zero or negative restances or capacitances would cause the simulator to fail. Represent zero
+ ohm resistors using a wire or very low value resistor.</li>
+ </ul>
+ 
+<p><a href="index.html">Back to Contents</a></p>
+</div>
+</html>

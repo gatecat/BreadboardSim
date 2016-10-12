@@ -1,0 +1,19 @@
+<models>
+<model name="Red" footprint="led" colour="#FF0000">
+<data>DIODE {r} {1} {2} is=1e-12 n=3 rser=9</data>
+</model>
+<model name="Yellow" footprint="led" colour="#FFFF00">
+<data>DIODE {r} {1} {2} is=1e-19 n=2 rser=1.5</data>
+</model>
+<model name="Orange" footprint="led" colour="#FF8800">
+<data>DIODE {r} {1} {2} is=1e-19 n=2 rser=1.5</data>
+</model>
+<model name="Green" footprint="led" colour="#00FF00">
+<data>DIODE {r} {1} {2} is=1e-19 n=2 rser=1.5</data>
+</model>
+
+<model name="Blue" footprint="led" colour="#0000FF" >
+<data>DIODE {r} {1} {2} is=25e-14 n=5 rser=14</data>
+</model>
+
+</models>

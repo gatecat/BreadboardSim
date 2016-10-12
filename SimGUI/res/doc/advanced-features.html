@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<title>Advanced Features</title>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content">
+<h1>Advanced Features</h1>
+<p><a href="index.html">Back to Contents</a></p>
+<p>This page is designed introduce you to some more of the features included in Breadboard Simulator.</p>
+<h3 id="CircuitSettings">Circuit Settings</h3>
+<p>The Circuit Settings dialog box enables you to set up various parameters relating to the circuit. To open it, click on the 'Gear' toolbar button (<img class="inline" src="images/icons/settings.png"/> or open the Circuit menu and click on Settings.</p>
+<div class="screenshot-container-small"><img class="screenshot" src="images/screenshots/circuit-settings.png"/></div>
+<ul>
+<li><strong>Number of Breadboards</strong> allows you to select the number of breadboards that are displayed for circuits to be built on, up to a maximum of 6.</li>
+<li><strong>Simulation Speed</strong> sets the target number of simulation seconds per real second. Note that complex circuits may simulate slower than the set simulation speed.</li>
+<li><strong>Positive Rail Voltage</strong> sets the voltage of that the positive (red colour) voltage rail.</li>
+<li><strong>Negative Rail Voltage</strong> sets the voltage of that the negative (blue colour) voltage rail.</li>
+</ul>
+<p>Note that the 0V rail (black) is fixed at 0V and cannot be changed.</p>
+<h3 id="VIMeasure">Measuring Voltages and Currents</h3>
+You can view the voltage or current of any component pin or wire during simulation. Just hover over the wire or pin and a box will appear with the voltage (for wires and pins) and current (for pins only); as well as the pin name and number for pins. An example is shown below:
+<div class="screenshot-container-exsmall"><img class="screenshot" src="images/screenshots/vi-tooltip.png"/></div>
+<h3 id="GraphSettings">Graph Settings</h3>
+<p>When viewing  graph, you can click on the 'Settings' button to open a dialog box to set up the graph.<p>
+<div class="screenshot-container-small"><img class="screenshot" src="images/screenshots/graph-settings.png"/></div>
+<ul>
+<li><strong>Volts/div</strong> acts like the volts per division control on an oscilloscope. It sets the number of volts each square on the graph grid represents.</li>
+<li><strong>Volts offset</strong> allows the traces to be shifted up or down. This value defaults to -2V, shifting the trace down to increase the room for positive voltages.</li>
+<li><strong>Sec/div</strong> acts like the seconds per division control on an oscilloscope. It sets the number of seconds each square on the graph grid represents, and defaults to the current simulation speed. This means one grid square on the oscilloscope, by default, represents one real second.</li>
+</ul>
+<p><a href="index.html">Back to Contents</a></p>
+
+</div>
+</body>
+</html>

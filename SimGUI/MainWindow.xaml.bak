@@ -1,0 +1,605 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Globalization;
+
+namespace SimGUI
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public readonly double[] E3 = { 1, 2.2, 4.7 };
+        public readonly double[] E6 = { 1, 1.5, 2.2, 3.3, 4.7, 6.8 };
+
+
+
+        public const double scaleFactor = 15; //hole spacing in px (i.e. px per 2mm)
+        public const int offsetX = 29; //X-coordinate of centre of upper left hole, relative to start of bb
+        public const int offsetY = 29; //Y-coordinate of centre upper left hole, relative to start of bb
+
+
+        private double zoomFactor = 1;
+        private const double zoomFactorDelta = 0.25;
+
+        public List<Component> allComponents = new List<Component>();
+
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+
+        public string SelectedTool = "SELECT";
+
+        public Circuit circuit;
+
+        //Map breadboard IDs to the breadboard objects
+        //Breadboard IDs are such that top left breadboard = 0, top right breadboard = 1, one below the top left = 2, etc
+        public Dictionary<int, Breadboard> breadboards = new Dictionary<int, Breadboard>();
+
+        //Path to last opened file
+        private string LastOpenedFile = null;
+
+        private Simulator CurrentSimulator = new Simulator();
+
+        public MainWindow()
+        {
+            circuit = new Circuit(this);
+
+            InitializeComponent();
+
+            TreeViewItem customResistor = new TreeViewItem();
+
+            populateMenu(Devices_Resistors, E6, 0, 7, "Ω Resistor", "Resistor");
+
+            TreeViewItem customCapacitor = new TreeViewItem();
+
+            populateMenu(Devices_Capacitors, E3, -10, -7, "F Capacitor", "Capacitor");
+            populateMenu(Devices_ElectroCapacitors, E3, -6, -3, "F Capacitor", "Electrolytic Capacitor");
+
+            populateMenuWithModels(Devices_DigitalIC, "Integrated Circuit", "res/models/ics.xml", "Digital");
+            populateMenuWithModels(Devices_Diodes, "Diode", "res/models/diodes.xml");
+
+
+            ComponentData pot_10k = new ComponentData("Potentiometer", 10000, "10k Potentiometer");
+
+            TreeViewItem pot_10k_item = new TreeViewItem();
+            pot_10k_item.Header = pot_10k;
+            Devices_Input.Items.Add(pot_10k_item);
+
+            ComponentData spdt_switch = new ComponentData("SPDT Switch", 0, "SPDT Switch");
+
+            TreeViewItem spdt_switch_item = new TreeViewItem();
+            spdt_switch_item.Header = spdt_switch;
+            Devices_Input.Items.Add(spdt_switch_item);
+          /*  Breadboard newBb = new Breadboard(circuit);
+            Canvas.SetLeft(newBb, 30);
+            Canvas.SetTop(newBb, 360);
+            DrawArea.Children.Add(newBb);*/
+            SetNumberOfBreadboards(1);
+
+           /*foreach (UIElement p in generateWire(2, Orientation.Vertical, Brushes.Red))
+            {
+                TestWire.Children.Add(p);
+            }*/
+           /* foreach (UIElement e in loadComponent("DIP8", "555"))
+            {
+                TestIC.Children.Add(e);
+            }*/
+          /*  Component IC1 = new Component(circuit, new Point(60, 150));
+            IC1.LoadFootprintFromXml("DIP8");
+            allComponents.Add(IC1);
+            circuit.AddComponent(IC1);
+
+            Component IC2 = new Component(circuit, new Point(270, 150));
+            IC2.LoadFootprintFromXml("DIP14");
+            allComponents.Add(IC2);
+            circuit.AddComponent(IC2);*/
+
+            SelectTool("SELECT");
+        }
+
+        //abcdefg
+        /*TODELETE*/string[] segPatterns = {
+                                         "1111110",
+                                         "0110000",
+                                         "1101101",
+                                         "1111001",
+                                         "0110011",
+                                         "1011011",
+                                         "1011111",
+                                         "1110000",
+                                         "1111111",
+                                         "1111011"
+                                     };
+        int n = 0;
+        /*TODELETE*/void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+           /* for (int i = 1; i <= 7; i++)
+            {
+                if (Test7seg.Children[i] is Path)
+                {
+                    Path segment = (Path)Test7seg.Children[i];
+                    bool segmentState = (segPatterns[n][i - 1] == '1');
+                    if (segmentState)
+                    {
+                        segment.Stroke = Brushes.Red;
+                        segment.Fill = Brushes.Red;
+                    }
+                    else
+                    {
+                        segment.Stroke = Brushes.LightGray;
+                        segment.Fill = Brushes.LightGray;
+                    }
+                }
+            }
+            n = (n + 1) % 10;*/
+        }
+
+        int numberOfUpdates = 0;
+        private void simUpdate(object sender, EventArgs e)
+        {
+
+                if (CurrentSimulator.SimulationRunning)
+                {
+                    CurrentSimulator.Update();
+                    //Graphing may fail with too few points
+                    if (CurrentSimulator.getNumberOfTicks() >= 5)
+                    {
+                        if (graph != null)
+                        {
+                            graph.PlotAll();
+                        }
+                    }
+
+                    numberOfUpdates++;
+
+                    foreach (var component in circuit.Components)
+                        component.UpdateFromSimulation(numberOfUpdates, CurrentSimulator);
+                    //Run every second
+                    if ((numberOfUpdates % 20) == 0)
+                    {
+                        Quantity simulationTime = new Quantity("t", "Simulation Time", "s");
+                        simulationTime.Val = CurrentSimulator.getCurrentTime();
+                        StatusText.Text = "Interactive Simulation Running | t=" + simulationTime.ToString();
+                    }
+                }
+                else
+                {
+                    StatusText.Text = "Ready";
+                    numberOfUpdates = 0;
+                }
+
+            Util.DoEvents();
+        }
+
+        //Populate a TreeViewItem with items following a preferred value series that represent a given component; between the magnitudes specified by magBegin and magEnd
+        public void populateMenu(TreeViewItem root, double[] series, int magBegin, int magEnd, string suffix, string componentType)
+        {
+            for (int mag = magBegin; mag <= magEnd; mag++)
+            {
+                foreach (double seriesValue in series)
+                {
+                    double val = seriesValue * Math.Pow(10, mag);
+                    Quantity q = new Quantity();
+                    q.Val = val;
+                    TreeViewItem newItem = new TreeViewItem();
+                    newItem.Header = new ComponentData(componentType, val, q.ToString() + suffix);
+                    root.Items.Add(newItem);
+                }
+            }
+        }
+
+        //Populate a TreeViewItem with items from a model database
+        public void populateMenuWithModels(TreeViewItem root, string componentType, string modelFile, string category = null)
+        {
+            List<string> modelNames = Component.GetModelNames(modelFile, category);
+            foreach(string model in modelNames) {
+                    TreeViewItem newItem = new TreeViewItem();
+                    newItem.Header = new ComponentData(componentType, 0, model, model);
+                    root.Items.Add(newItem);
+            }
+        }
+
+        //Adds a given breadboard, identified by ID
+        private void AddBreadboard(int breadboardNumber)
+        {
+            int col = breadboardNumber % Constants.BreadboardsPerRow;
+            int row = breadboardNumber / Constants.BreadboardsPerRow;
+            Breadboard newBb = new Breadboard(circuit);
+            Canvas.SetLeft(newBb, col * Constants.BreadboardSpacingX + Constants.BreadboardStartX);
+            Canvas.SetTop(newBb, row * Constants.BreadboardSpacingY + Constants.BreadboardStartY);
+            DrawArea.Children.Add(newBb);
+            breadboards[breadboardNumber] = newBb;
+        }
+
+        //Removes a given breadboard, identified by ID
+        private void RemoveBreadboard(int breadboardNumber)
+        {
+            if (breadboards.ContainsKey(breadboardNumber))
+            {
+                DrawArea.Children.Remove(breadboards[breadboardNumber]);
+                breadboards.Remove(breadboardNumber);
+            }
+        }
+
+        //Modifies the set of breadboards such that there are a certain number of breadboards
+        public void SetNumberOfBreadboards(int newNumberOfBreadboards)
+        {
+            int currentNumberOfBreadboards = breadboards.Count;
+            if (newNumberOfBreadboards > currentNumberOfBreadboards)
+            {
+                for (int i = currentNumberOfBreadboards; i < newNumberOfBreadboards; i++)
+                {
+                    AddBreadboard(i);
+                }
+            }
+            else if (newNumberOfBreadboards < currentNumberOfBreadboards)
+            {
+                for (int i = currentNumberOfBreadboards; i >= newNumberOfBreadboards; i--)
+                {
+                    RemoveBreadboard(i);
+                }
+            }
+        }
+
+        private void ZoomIn_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            zoomFactor *= 1 + zoomFactorDelta;
+            DrawArea.LayoutTransform = new ScaleTransform(zoomFactor, zoomFactor);
+            CScroll.ScrollToHorizontalOffset(CScroll.HorizontalOffset * (1 + zoomFactorDelta));
+            CScroll.ScrollToVerticalOffset(CScroll.VerticalOffset * (1 + zoomFactorDelta));
+
+        }
+
+        private void ZoomOut_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            zoomFactor *= 1 - zoomFactorDelta;
+            DrawArea.LayoutTransform = new ScaleTransform(zoomFactor, zoomFactor);
+            CScroll.ScrollToHorizontalOffset(CScroll.HorizontalOffset * (1 - zoomFactorDelta));
+            CScroll.ScrollToVerticalOffset(CScroll.VerticalOffset * (1 - zoomFactorDelta));
+        }
+        GraphView graph = null;
+        private void ShowHideGraph_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (graph == null)
+            {
+                graph = new GraphView();
+                graph.Show();
+            }
+            else
+            {
+                if (graph.IsVisible)
+                {
+                    graph.Hide();
+                }
+                else
+                {
+                    graph.Show();
+                }
+            }
+        }
+
+        private void ShowSettings_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CircuitProperties p = new CircuitProperties();
+            p.SetProperties(GetNumberOfBreadboards(), circuit.SimulationSpeed.Val, circuit.PositiveRailVoltage, circuit.NegativeRailVoltage);
+            p.ShowDialog();
+            SetNumberOfBreadboards(p.GetSelectedNumberOfBreadboards());
+            circuit.SimulationSpeed.Val = p.GetSelectedSimulationSpeed();
+            circuit.PositiveRailVoltage = p.GetPositiveRailVoltage();
+            circuit.NegativeRailVoltage = p.GetNegativeRailVoltage();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (graph != null)
+                graph.Close();
+        }
+
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            /*if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                switch (e.Key)
+                {
+                    case Key.Z:
+                        circuit.UndoLast();
+                        break;
+                    case Key.Y:
+                        circuit.RedoLast();
+                        break;
+                }
+            }
+            else
+            {*/
+                switch (e.Key)
+                {
+                    case Key.Escape:
+                        circuit.PurgeUnfinished();
+                        break;
+                    default:
+                        if (circuit.GetSelectedComponent() != null)
+                        {
+                            circuit.GetSelectedComponent().Component_KeyDown(sender, e);
+                        }
+                        else if (circuit.GetSelectedWire() != null)
+                        {
+                            circuit.GetSelectedWire().Wire_KeyDown(sender, e);
+                        }
+                        break;
+                }
+            //}
+
+        }
+
+        public ComponentData GetSelectedComponent()
+        {
+            if (DevicePicker.SelectedItem is TreeViewItem)
+            {
+                if(((TreeViewItem)DevicePicker.SelectedItem).Header is ComponentData) {
+                    return (ComponentData)((TreeViewItem)DevicePicker.SelectedItem).Header;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        //Called when any of the tool items is clicked
+        private void ToolChange_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string CommandName = ((RoutedCommand)e.Command).Name;
+            //Command name is of the form SelectToolTOOL
+            SelectTool(CommandName.Substring(10));
+            e.Handled = true;
+        }
+
+        public void UpdatePrompt()
+        {
+            switch (SelectedTool)
+            {
+                case "SELECT":
+                    if (circuit.GetSelectedWire() != null)
+                    {
+                        Prompt.Text = "Wire selected";
+                    }
+                    else if (circuit.GetSelectedComponent() != null)
+                    {
+                        Component c = circuit.GetSelectedComponent();
+                        Prompt.Text = c.ComponentType + " " + c.ComponentName + " selected";
+                        if (c.ComponentModel != "")
+                            Prompt.Text += ", model " + c.ComponentModel;
+                        if (c.ComponentValue.ID != "")
+                            Prompt.Text += ", value " + c.ComponentValue.ToString();
+                    }
+                    else
+                    {
+                        Prompt.Text = "Select an object";
+                    }
+                    break;
+                case "INTERACT":
+                    Prompt.Text = "Click on a component to interact with it";
+                    break;
+                case "WIRE":
+                    if(Breadboard.StartedWire) {
+                        Prompt.Text = "Click to finish placing wire";
+                    } else {
+                        Prompt.Text = "Click to start placing wire";
+                    }
+                    break;
+                case "COMPONENT":
+                    ComponentData selectedComponent = GetSelectedComponent();
+                    if (selectedComponent != null)
+                    {
+                        if (Breadboard.StartedLeadedComponent)
+                        {
+                            Prompt.Text = "Click to finish placing " + selectedComponent.label;
+                        }
+                        else
+                        {
+                            Prompt.Text = "Click to place " + selectedComponent.label;
+                        }
+                    }
+                    else
+                    {
+                        Prompt.Text = "Select a component type from the panel on the left";
+                    }
+                    break;
+                case "DELETE":
+                    Prompt.Text = "Click on a component or wire to delete it";
+                    break;
+            }
+        }
+
+        //Selects a new tool
+        public void SelectTool(string toolName)
+        {
+            circuit.PurgeUnfinished();
+            circuit.DeselectAll();
+            foreach (ToggleButton t in Toolbox.Items.OfType<ToggleButton>())
+            {
+                t.IsChecked = false;
+            }
+            SelectedTool = toolName.ToUpper();
+            switch (SelectedTool)
+            {
+                case "SELECT":
+                    Tool_SELECT.IsChecked = true;
+                    DrawArea.Cursor = Cursors.Arrow;
+                    break;
+                case "INTERACT":
+                    Tool_INTERACT.IsChecked = true;
+                    DrawArea.Cursor = new Cursor(Environment.CurrentDirectory + "/res/tools/interact.cur");
+                    break;
+                case "COMPONENT":
+                    Tool_COMPONENT.IsChecked = true;
+                    DrawArea.Cursor = new Cursor(Environment.CurrentDirectory + "/res/tools/component.cur");
+                    break;
+                case "WIRE":
+                    Tool_WIRE.IsChecked = true;
+                    DrawArea.Cursor = new Cursor(Environment.CurrentDirectory + "/res/tools/wire.cur");
+                    break;
+                case "DELETE":
+                    Tool_DELETE.IsChecked = true;
+                    DrawArea.Cursor = new Cursor(Environment.CurrentDirectory + "/res/tools/delete.cur");
+                    break;
+            }
+            UpdatePrompt();
+        }
+
+        private void DevicePicker_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (GetSelectedComponent() != null)
+            {
+                SelectTool("COMPONENT");
+            }
+        }
+
+        private void RunSimulation_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show(circuit.GetNetlist());
+        }
+
+        public int GetNumberOfBreadboards()
+        {
+            return breadboards.Count;
+        }
+
+        private void NewFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            LastOpenedFile = null;
+            Title = "Breadboard Simulator - Untitled";
+            circuit.ClearCircuit();
+        }
+
+        private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openDialog = new Microsoft.Win32.OpenFileDialog();
+            openDialog.CheckFileExists = true;
+            openDialog.Filter = "Breadboards (.bbrd)|*.bbrd";
+            openDialog.DefaultExt = ".bbrd";
+            bool? result = openDialog.ShowDialog();
+            //We want to check that file selection is successful and the user did not click Cancel
+            if (result == true)
+            {
+                string filename = openDialog.FileName;
+                circuit.LoadCircuit(filename);
+                LastOpenedFile = filename;
+                Title = "Breadboard Simulator - " + System.IO.Path.GetFileNameWithoutExtension(filename);
+            }
+        }
+
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            bool? result = false;
+            string filename;
+            if ((((RoutedCommand)e.Command).Name == "Save") && (LastOpenedFile != null))
+            {
+                result = true;
+                filename = LastOpenedFile;
+            }
+            else
+            {
+                Microsoft.Win32.SaveFileDialog saveDialog = new Microsoft.Win32.SaveFileDialog();
+                saveDialog.Filter = "Breadboards (.bbrd)|*.bbrd";
+                saveDialog.DefaultExt = ".bbrd";
+                if (LastOpenedFile != null)
+                {
+                    saveDialog.InitialDirectory = System.IO.Path.GetDirectoryName(LastOpenedFile);
+                    saveDialog.FileName = System.IO.Path.GetFileName(LastOpenedFile);
+                }
+                else
+                {
+                    saveDialog.FileName = "Untitled";
+                }
+
+                result = saveDialog.ShowDialog();
+                filename = saveDialog.FileName;
+            }
+
+            if (result == true)
+            {
+                circuit.SaveCircuit(filename);
+                LastOpenedFile = filename;
+                Title = "Breadboard Simulator - " + System.IO.Path.GetFileNameWithoutExtension(filename);
+            }
+        }
+
+        private void DrawArea_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void StopSimulation_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Undo_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            circuit.UndoLast();
+        }
+
+        private void Redo_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            circuit.RedoLast();
+        }
+
+        private void Redo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = circuit.CanRedoLast();
+        }
+
+        private void Undo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = circuit.CanUndoLast();
+        }
+
+
+    }
+
+    //Commands that are not built in to WPF, but that are needed for this application
+    public static class CustomCommands
+    {
+        public static readonly RoutedUICommand CircuitSettings = new RoutedUICommand("Settings","CircuitSettings",typeof(MainWindow),
+          new InputGestureCollection { new KeyGesture(Key.F4) });
+        public static readonly RoutedUICommand RunSimulation = new RoutedUICommand("Run", "RunSimulation", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.F5) });
+        public static readonly RoutedUICommand StopSimulation = new RoutedUICommand("Stop", "StopSimulation", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.F6) });
+        public static readonly RoutedUICommand ShowHideGraph = new RoutedUICommand("Show/Hide Graph", "ShowHideGraph", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.G, ModifierKeys.Control) });
+
+        //Tool selection commands
+        public static readonly RoutedUICommand SelectToolSELECT = new RoutedUICommand("Select", "SelectToolSELECT", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.Escape, ModifierKeys.Shift) });
+        public static readonly RoutedUICommand SelectToolINTERACT = new RoutedUICommand("Interact", "SelectToolINTERACT", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.I, ModifierKeys.Control) });
+        public static readonly RoutedUICommand SelectToolCOMPONENT = new RoutedUICommand("Place Components", "SelectToolCOMPONENT", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.A, ModifierKeys.Control) });
+        public static readonly RoutedUICommand SelectToolWIRE = new RoutedUICommand("Place Wires", "SelectToolWIRE", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.W, ModifierKeys.Control) });
+        public static readonly RoutedUICommand SelectToolDELETE = new RoutedUICommand("Delete", "SelectToolDELETE", typeof(MainWindow),
+            new InputGestureCollection { new KeyGesture(Key.Delete, ModifierKeys.Shift) });
+
+
+    }
+}

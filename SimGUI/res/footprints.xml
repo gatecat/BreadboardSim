@@ -1,0 +1,329 @@
+<footprints>
+<footprint name="DIP14">
+<!-- PINS -->
+<pin  number="1" x="0" y="3"/>
+<pin  number="2" x="1" y="3"/>
+<pin  number="3" x="2" y="3"/>
+<pin  number="4" x="3" y="3"/>
+<pin  number="5" x="4" y="3"/>
+<pin  number="6" x="5" y="3"/>
+<pin  number="7" x="6" y="3"/>
+<pin  number="8" x="6" y="0"/>
+<pin  number="9" x="5" y="0"/>
+<pin  number="10" x="4" y="0"/>
+<pin  number="11" x="3" y="0"/>
+<pin  number="12" x="2" y="0"/>
+<pin  number="13" x="1" y="0"/>
+<pin  number="14" x="0" y="0"/>
+
+<path name="pin14" fillcolour="Gray" linecolour="Gray">M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin13" fillcolour="Gray" linecolour="Gray">M 0.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin12" fillcolour="Gray" linecolour="Gray">M 1.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin11" fillcolour="Gray" linecolour="Gray">M 2.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin10" fillcolour="Gray" linecolour="Gray">M 3.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin9" fillcolour="Gray" linecolour="Gray">M 4.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin8" fillcolour="Gray" linecolour="Gray">M 5.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+
+<path name="pin1" fillcolour="Gray" linecolour="Gray">M -0.2, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin2" fillcolour="Gray" linecolour="Gray">M 0.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin3" fillcolour="Gray" linecolour="Gray">M 1.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin4" fillcolour="Gray" linecolour="Gray">M 2.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin5" fillcolour="Gray" linecolour="Gray">M 3.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin6" fillcolour="Gray" linecolour="Gray">M 4.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin7" fillcolour="Gray" linecolour="Gray">M 5.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+
+<!-- CHIP BODY -->
+<path fillcolour="Black" linecolour="Black">M -0.4, 0.4 H 6.4 V 2.6 H -0.4 V 0.4</path>
+<!-- CHIP NOTCH -->
+<path fillcolour="DarkGray" linecolour="DarkGray">M -0.4, 1.2 H 0 V 1.8 H -0.4 V 1.2</path>
+
+<text name="_Model" X="2.1" Y="0.9" size="1" colour="White">DIP14</text>
+ 
+</footprint>
+<footprint name="DIP16">
+<!-- PINS -->
+<pin  number="1" x="0" y="3"/>
+<pin  number="2" x="1" y="3"/>
+<pin  number="3" x="2" y="3"/>
+<pin  number="4" x="3" y="3"/>
+<pin  number="5" x="4" y="3"/>
+<pin  number="6" x="5" y="3"/>
+<pin  number="7" x="6" y="3"/>
+<pin  number="8" x="7" y="3"/>
+
+<pin  number="9" x="7" y="0"/>
+<pin  number="10" x="6" y="0"/>
+<pin  number="11" x="5" y="0"/>
+<pin  number="12" x="4" y="0"/>
+<pin  number="13" x="3" y="0"/>
+<pin  number="14" x="2" y="0"/>
+<pin  number="15" x="1" y="0"/>
+<pin  number="16" x="0" y="0"/>
+
+<path name="pin16" fillcolour="Gray" linecolour="Gray">M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin15" fillcolour="Gray" linecolour="Gray">M 0.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin14" fillcolour="Gray" linecolour="Gray">M 1.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin13" fillcolour="Gray" linecolour="Gray">M 2.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin12" fillcolour="Gray" linecolour="Gray">M 3.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin11" fillcolour="Gray" linecolour="Gray">M 4.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin10" fillcolour="Gray" linecolour="Gray">M 5.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin9" fillcolour="Gray" linecolour="Gray">M 6.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+
+<path name="pin1" fillcolour="Gray" linecolour="Gray">M -0.2, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin2" fillcolour="Gray" linecolour="Gray">M 0.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin3" fillcolour="Gray" linecolour="Gray">M 1.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin4" fillcolour="Gray" linecolour="Gray">M 2.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin5" fillcolour="Gray" linecolour="Gray">M 3.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin6" fillcolour="Gray" linecolour="Gray">M 4.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin7" fillcolour="Gray" linecolour="Gray">M 5.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin8" fillcolour="Gray" linecolour="Gray">M 6.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+
+<!-- CHIP BODY -->
+<path fillcolour="Black" linecolour="Black">M -0.4, 0.4 H 7.4 V 2.6 H -0.4 V 0.4</path>
+<!-- CHIP NOTCH -->
+<path fillcolour="DarkGray" linecolour="DarkGray">M -0.4, 1.2 H 0 V 1.8 H -0.4 V 1.2</path>
+
+<text name="_Model" X="2.1" Y="0.9" size="1" colour="White">DIP14</text>
+ 
+</footprint>
+<footprint name="DIP8">
+<!-- PINS -->
+<pin  number="1" x="0" y="3"/>
+<pin  number="2" x="1" y="3"/>
+<pin  number="3" x="2" y="3"/>
+<pin  number="4" x="3" y="3"/>
+<pin  number="5" x="3" y="0"/>
+<pin  number="6" x="2" y="0"/>
+<pin  number="7" x="1" y="0"/>
+<pin  number="8" x="0" y="0"/>
+
+<path name="pin8" fillcolour="Gray" linecolour="Gray">M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin7" fillcolour="Gray" linecolour="Gray">M 0.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin6" fillcolour="Gray" linecolour="Gray">M 1.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin5" fillcolour="Gray" linecolour="Gray">M 2.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin1" fillcolour="Gray" linecolour="Gray">M -0.2, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin2" fillcolour="Gray" linecolour="Gray">M 0.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin3" fillcolour="Gray" linecolour="Gray">M 1.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin4" fillcolour="Gray" linecolour="Gray">M 2.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<!-- CHIP BODY -->
+<path fillcolour="Black" linecolour="Black">M -0.4, 0.4 H 3.4 V 2.6 H -0.4 V 0.4</path>
+<!-- CHIP NOTCH -->
+<path fillcolour="DarkGray" linecolour="DarkGray">M -0.4, 1.2 H 0 V 1.8 H -0.4 V 1.2</path>
+
+<text name="_Model" X="0.5" Y="0.9" size="1" colour="White">DIP8</text>
+ 
+</footprint>
+<!--DIP8 with a smaller font size-->
+<footprint name="DIP8-SMALLFONT">
+<!-- PINS -->
+<pin  number="1" x="0" y="3"/>
+<pin  number="2" x="1" y="3"/>
+<pin  number="3" x="2" y="3"/>
+<pin  number="4" x="3" y="3"/>
+<pin  number="5" x="3" y="0"/>
+<pin  number="6" x="2" y="0"/>
+<pin  number="7" x="1" y="0"/>
+<pin  number="8" x="0" y="0"/>
+
+<path name="pin8" fillcolour="Gray" linecolour="Gray">M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin7" fillcolour="Gray" linecolour="Gray">M 0.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin6" fillcolour="Gray" linecolour="Gray">M 1.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin5" fillcolour="Gray" linecolour="Gray">M 2.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin1" fillcolour="Gray" linecolour="Gray">M -0.2, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin2" fillcolour="Gray" linecolour="Gray">M 0.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin3" fillcolour="Gray" linecolour="Gray">M 1.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin4" fillcolour="Gray" linecolour="Gray">M 2.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<!-- CHIP BODY -->
+<path fillcolour="Black" linecolour="Black">M -0.4, 0.4 H 3.4 V 2.6 H -0.4 V 0.4</path>
+<!-- CHIP NOTCH -->
+<path fillcolour="DarkGray" linecolour="DarkGray">M -0.4, 1.2 H 0 V 1.8 H -0.4 V 1.2</path>
+
+<text name="_Model" X="0.3" Y="1.02" size="0.7" colour="White">DIP8</text>
+ 
+</footprint>
+<footprint name="capacitor_np">
+<!-- PINS -->
+<pin  number="1" x="0" y="0"/>
+<pin  number="2" x="1" y="0"/>
+
+<path fillcolour="Gray" linecolour="Gray">M -0.5, -0.5 H 1.5 V 0.5 H -0.5 V -0.5</path>
+<text name="_Value" X="-0.3" Y="-0.4" size="0.6" colour="White"></text>
+ 
+</footprint>
+<footprint name="capacitor_elec">
+<!-- PINS -->
+<pin  number="1" x="0" y="0"/>
+<pin  number="2" x="1" y="0"/>
+
+<path fillcolour="Black" linecolour="Black">M -0.5,0 A 1,1 0 1 1 1.5,0 M -0.5,0 A 1,1 0 1 0 1.5,0</path>
+<path fillcolour="lightGray" linecolour="LightGray"> M 1.25, -0.5 A 0.2, 0.5 0 0 1 1.25, 0.5 </path>
+<text name="_Value" X="-0.3" Y="-0.3" size="0.6" colour="White"></text>
+
+ 
+</footprint>
+<footprint name="potentiometer">
+
+<pin  number="1" x="-1" y="3"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="3" x="1" y="3"/>
+
+<path name="pin1" fillcolour="Gray" linecolour="Gray">M -1.2, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin2" fillcolour="Gray" linecolour="Gray">M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin3" fillcolour="Gray" linecolour="Gray">M 0.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+
+<path fillcolour="Blue" linecolour="Blue">M -1.4, 0.4 H 1.4 V 2.6 H -1.4 V 0.4</path>
+<path fillcolour="DarkBlue" linecolour="DarkBlue">M -0.8,1.5 A 0.8,0.8 0 1 1 0.8,1.5 M -0.8,1.5 A 0.8,0.8 0 1 0 0.8,1.5</path>
+
+<path name="pointer" fillcolour="LightBlue" linecolour="LightBlue">M -0.2,2.0 V 1 H 0.2 V 2.0 H -0.2</path>
+</footprint>
+<footprint name="spdt_a">
+
+<pin  number="1" x="-1" y="0"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="3" x="1" y="0"/>
+
+
+<path fillcolour="DarkGray" linecolour="DarkGray">M -1.4, 0.6 H 1.4 V -0.6 H -1.4 V 0.6</path>
+<path fillcolour="SaddleBrown" thickness="0.05" linecolour="Black">M -1, 0.4 H 1 V -0.4 H -1 V 0.4</path>
+
+<path name="slider" fillcolour="Red" linecolour="Black">M -1, 0.4 H -0.3 V -0.4 H -1 V 0.4</path>
+</footprint>
+<footprint name="spdt_b">
+
+<pin  number="1" x="-1" y="0"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="3" x="1" y="0"/>
+
+
+<path fillcolour="DarkGray" linecolour="DarkGray">M -1.4, 0.6 H 1.4 V -0.6 H -1.4 V 0.6</path>
+<path fillcolour="SaddleBrown" thickness="0.05" linecolour="Black">M -1, 0.4 H 1 V -0.4 H -1 V 0.4</path>
+
+<path name="slider" fillcolour="Red" linecolour="Black">M 1, 0.4 H 0.3 V -0.4 H 1 V 0.4</path>
+</footprint>
+<footprint name="probe">
+<pin  number="1" x="0" y="0"/>
+<path fillcolour="Transparent" linecolour="Gray" thickness="0.35">M -0.05, 0.1 L 0.4, -0.4</path>
+<path name="ProbeBody" fillcolour="Black" linecolour="Gray" thickness="0.1">M 0.6, -0.2 A 0.4,0.4 0 1 1 0.6, -1 M 0.6, -0.2 A 0.4,0.4 0 1 0 0.6,-1 </path>
+
+</footprint>
+<footprint name="spdt_b">
+
+<pin  number="1" x="-1" y="0"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="3" x="1" y="0"/>
+
+
+<path fillcolour="DarkGray" linecolour="DarkGray">M -1.4, 0.6 H 1.4 V -0.6 H -1.4 V 0.6</path>
+<path fillcolour="SaddleBrown" thickness="0.05" linecolour="Black">M -1, 0.4 H 1 V -0.4 H -1 V 0.4</path>
+
+<path name="slider" fillcolour="Red" linecolour="Black">M 1, 0.4 H 0.3 V -0.4 H 1 V 0.4</path>
+</footprint>
+<footprint name="led">
+<pin  number="1" x="0" y="0"/>
+<pin  number="2" x="1" y="0"/>
+
+<path name="LEDBody" fillcolour="Transparent" linecolour="Transparent" >M 1.2, 0.4 A 0.8, 0.8 0 1 1 1.2, -0.4</path>
+
+</footprint>
+<footprint name="7segment">
+<pin  number="1" x="0" y="0"/>
+<pin  number="2" x="1" y="0"/>
+<pin  number="3" x="2" y="0"/>
+<pin  number="4" x="3" y="0"/>
+<pin  number="5" x="4" y="0"/>
+<pin  number="6" x="0" y="7"/>
+<pin  number="7" x="1" y="7"/>
+<pin  number="8" x="2" y="7"/>
+<pin  number="9" x="3" y="7"/>
+<pin  number="10" x="4" y="7"/>
+
+<path fillcolour="Black" linecolour="Black">M -0.4, 0.4 H 4.4 V 5.6 H -0.4 V 0.4</path>
+<path name="segmentA" fillcolour="LightGray" linecolour="LightGray">M 1, 0.6 H 3 V 1 H 1 V 0.6</path>
+<path name="segmentB" fillcolour="LightGray" linecolour="LightGray">M 3, 1 H 3.4 V 2.8 H 3 V 1</path>
+<path name="segmentC" fillcolour="LightGray" linecolour="LightGray">M 3, 3.2 H 3.4 V 5 H 3 V 3.2</path>
+<path name="segmentD" fillcolour="LightGray" linecolour="LightGray">M 1, 5 H 3 V 5.4 H 1 V 5</path>
+<path name="segmentE" fillcolour="LightGray" linecolour="LightGray">M 0.6, 3.2 H 1 V 5 H 0.6 V 3.2</path>
+<path name="segmentF" fillcolour="LightGray" linecolour="LightGray">M 0.6, 1 H 1 V 2.8 H 0.6 V 1</path>
+<path name="segmentG" fillcolour="LightGray" linecolour="LightGray">M 1, 2.8 H 3 V 3.2 H 1 V 2.8</path>
+<path name="pin1" fillcolour="Gray" linecolour="Gray">M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin2" fillcolour="Gray" linecolour="Gray">M 0.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin3" fillcolour="Gray" linecolour="Gray">M 1.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin4" fillcolour="Gray" linecolour="Gray">M 2.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin5" fillcolour="Gray" linecolour="Gray">M 3.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6</path>
+
+<path name="pin6" fillcolour="Gray" linecolour="Gray">M -0.2, 5.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin7" fillcolour="Gray" linecolour="Gray">M 0.8, 5.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin8" fillcolour="Gray" linecolour="Gray">M 1.8, 5.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin9" fillcolour="Gray" linecolour="Gray">M 2.8, 5.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+<path name="pin10" fillcolour="Gray" linecolour="Gray">M 3.8, 5.6 h 0.4 v 0.6 h -0.4 v -0.6</path>
+</footprint>
+
+<footprint name="push_switch">
+<pin  number="1" x="-1" y="-1"/>
+<pin  number="2" x="1" y="-1"/>
+<pin  number="3" x="-1" y="1"/>
+<pin  number="4" x="1" y="1"/>
+<path fillcolour="Blue" linecolour="Blue" >M 1.2, 1.2 A 1.7, 1.7 0 1 0 -1.2, 1.2</path>
+<path name="button" fillcolour="DodgerBlue" linecolour="LightBlue"  thickness="0.06" >M -0.9, -1.1 h 1.8 v 1.8 h -1.8 v -1.8</path>
+
+</footprint>
+
+<footprint name="TO-92">
+<pin  number="3" x="-1" y="0"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="1" x="1" y="0"/>
+
+<path fillcolour="#252525" linecolour="#252525">M -1.3, -0.5 A 1.4, 1.2 0 1 0 1.3, -0.5</path>
+
+<!--these invisible pin elements allow pin labels to be displayed-->
+<path name="pin3" fillcolour="Transparent" linecolour="Transparent">M -1.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin2" fillcolour="Transparent" linecolour="Transparent">M -0.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin1" fillcolour="Transparent" linecolour="Transparent">M 0.7, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+</footprint>
+
+<footprint name="TO-220">
+<pin  number="1" x="-1" y="0"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="3" x="1" y="0"/>
+
+<path fillcolour="#252525" linecolour="#252525">M -1.3, 0.7 H 1.3 V -0.7 H -1.3 V 0.7</path>
+<path fillcolour="Gray" linecolour="Gray">M -1.3, -0.2 H 1.3 V -0.7 H -1.3 V -0.2</path>
+
+<!--these invisible pin elements allow pin labels to be displayed-->
+<path name="pin1" fillcolour="Transparent" linecolour="Transparent">M -1.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin2" fillcolour="Transparent" linecolour="Transparent">M -0.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin3" fillcolour="Transparent" linecolour="Transparent">M 0.7, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+</footprint>
+
+<footprint name="TO-220-GDS">
+<pin  number="1" x="-1" y="0"/>
+<pin  number="2" x="0" y="0"/>
+<pin  number="3" x="1" y="0"/>
+
+<path fillcolour="#252525" linecolour="#252525">M -1.3, 0.7 H 1.3 V -0.7 H -1.3 V 0.7</path>
+<path fillcolour="Gray" linecolour="Gray">M -1.3, -0.2 H 1.3 V -0.7 H -1.3 V -0.2</path>
+
+<!--these invisible pin elements allow pin labels to be displayed-->
+<path name="pin1" fillcolour="Transparent" linecolour="Transparent">M -1.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin2" fillcolour="Transparent" linecolour="Transparent">M -0.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin3" fillcolour="Transparent" linecolour="Transparent">M 0.7, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+
+<text name="pin1_lbl" X="-1.1" Y="-0.1" size="0.55" colour="White">G</text>
+<text name="pin2_lbl" X="-0.15" Y="-0.1" size="0.55" colour="White">D</text>
+<text name="pin3_lbl" X="0.85" Y="-0.1" size="0.55" colour="White">S</text>
+
+</footprint>
+
+<footprint name="LDR">
+<pin  number="1" x="0" y="0"/>
+<pin  number="2" x="1" y="0"/>
+
+<path fillcolour="Thistle" thickness="0.05" linecolour="Sienna">M -0.5,0 A 1,1 0 1 1 1.5,0 M -0.5,0 A 1,1 0 1 0 1.5,0</path>
+<path fillcolour="Transparent" thickness="0.1" linecolour="Sienna">M -0.2, -0.3 v 0.6 h 0.2 v -0.6 h 0.2 v 0.6 h 0.2 v -0.6 h 0.2 v 0.6 h 0.2 v -0.6 h 0.2 v 0.6  h 0.2 v -0.6</path>
+
+<!--these invisible pin elements allow pin labels to be displayed-->
+<path name="pin1" fillcolour="Transparent" linecolour="Transparent">M -0.3, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+<path name="pin2" fillcolour="Transparent" linecolour="Transparent">M 0.7, -0.3 h 0.6 v 0.6 h -0.6 v -0.6</path>
+</footprint>
+
+</footprints>

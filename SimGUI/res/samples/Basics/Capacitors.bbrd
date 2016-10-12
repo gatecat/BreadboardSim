@@ -1,0 +1,17 @@
+<breadboard>
+  <setting key="numberOfBreadboards" value="1" />
+  <setting key="simulationSpeed" value="1" />
+  <setting key="positiveRailVoltage" value="5" />
+  <setting key="negativeRailVoltage" value="-5" />
+  <component ref="C1" type="Electrolytic Capacitor" startX="195" startY="225" angle="0" value="0.0001" />
+  <component ref="SW1" type="Push Switch" startX="135" startY="120" angle="0" state="False" />
+  <component ref="SW2" type="Push Switch" startX="270" startY="120" angle="0" state="False" />
+  <component ref="R1" type="Resistor" startX="195" startY="195" angle="0" value="20000" orientation="vert" length="-3" />
+  <component ref="P1" type="Probe" startX="195" startY="210" angle="0" />
+  <wire startX="196" startY="91" length="-3" orientation="horiz" colour="#FFFFA500" />
+  <wire startX="121" startY="91" length="-2" orientation="vert" colour="#FFFF0000" />
+  <wire startX="286" startY="151" length="9" orientation="vert" colour="#FF000000" />
+  <wire startX="211" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+  <wire startX="211" startY="91" length="3" orientation="horiz" colour="#FFFFA500" />
+  <wire startX="196" startY="106" length="1" orientation="horiz" colour="#FFFFA500" />
+</breadboard>

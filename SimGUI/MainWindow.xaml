@@ -1,0 +1,173 @@
+﻿<Window x:Class="SimGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:this="clr-namespace:SimGUI"
+        Icon="res/app.ico"
+        Title="Breadboard Simulator" Height="600" Width="1000" Closing="Window_Closing" KeyDown="Window_KeyDown"    ContentRendered="Window_ContentRendered">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" Executed="NewFile_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed"/>
+        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="Save_Executed"/>
+
+        <CommandBinding Command="ApplicationCommands.Undo" Executed="Undo_Executed" CanExecute="Undo_CanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Redo" Executed="Redo_Executed" CanExecute="Redo_CanExecute"/>
+
+        <CommandBinding Command="this:CustomCommands.RunSimulation" Executed="RunSimulation_Executed"/>
+        <CommandBinding Command="this:CustomCommands.StopSimulation" Executed="StopSimulation_Executed"/>
+        <CommandBinding Command="this:CustomCommands.CircuitSettings" Executed="ShowSettings_Executed"/>
+        <CommandBinding Command="this:CustomCommands.ShowHideGraph" Executed="ShowHideGraph_Executed"/>
+
+        <CommandBinding Command="NavigationCommands.IncreaseZoom" Executed="ZoomIn_Executed"/>
+        <CommandBinding Command="NavigationCommands.DecreaseZoom" Executed="ZoomOut_Executed"/>
+
+        <CommandBinding Command="this:CustomCommands.SelectToolSELECT" Executed="ToolChange_Executed"/>
+        <CommandBinding Command="this:CustomCommands.SelectToolINTERACT" Executed="ToolChange_Executed"/>
+        <CommandBinding Command="this:CustomCommands.SelectToolCOMPONENT" Executed="ToolChange_Executed"/>
+        <CommandBinding Command="this:CustomCommands.SelectToolWIRE" Executed="ToolChange_Executed"/>
+        <CommandBinding Command="this:CustomCommands.SelectToolDELETE" Executed="ToolChange_Executed"/>
+        
+        <CommandBinding Command="this:CustomCommands.HelpAbout" Executed="HelpAbout_Executed"/>
+        <CommandBinding Command="this:CustomCommands.HelpGS" Executed="HelpGS_Executed"/>
+
+        <CommandBinding Command="this:CustomCommands.HelpContents" Executed="HelpContents_Executed"/>
+
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="File_New" Command="ApplicationCommands.New" />
+                <MenuItem x:Name="File_Open"  Command="ApplicationCommands.Open"/>
+                <MenuItem x:Name="File_Samples" Header="Sample Circuits">
+                </MenuItem>
+                <MenuItem x:Name="File_Save" Command="ApplicationCommands.Save"/>
+                <MenuItem x:Name="File_Save_As" Command="ApplicationCommands.SaveAs"/>
+
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem x:Name="Edit_Undo" Command="ApplicationCommands.Undo"/>
+                <MenuItem x:Name="Edit_Redo" Command="ApplicationCommands.Redo"/>
+                <Separator/>
+                <MenuItem x:Name="Edit_Tool_SELECT" Command="this:CustomCommands.SelectToolSELECT"/>
+                <MenuItem x:Name="Edit_Tool_INTERACT" Command="this:CustomCommands.SelectToolINTERACT"/>
+                <MenuItem x:Name="Edit_Tool_COMPONENT" Command="this:CustomCommands.SelectToolCOMPONENT"/>
+                <MenuItem x:Name="Edit_Tool_WIRE" Command="this:CustomCommands.SelectToolWIRE"/>
+                <MenuItem x:Name="Edit_Tool_DELETE" Command="this:CustomCommands.SelectToolDELETE"/>
+
+            </MenuItem>
+            <MenuItem Header="_Circuit">
+                <MenuItem x:Name="Circuit_Run" Command="this:CustomCommands.RunSimulation"/>
+                <MenuItem x:Name="Circuit_Stop" Command="this:CustomCommands.StopSimulation"/>
+                <MenuItem x:Name="Circuit_Settings" Command="this:CustomCommands.CircuitSettings"/>
+                <MenuItem x:Name="Circuit_ShowHideGraph" Command="this:CustomCommands.ShowHideGraph"/>
+
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem x:Name="Help_Contents" Command="this:CustomCommands.HelpContents"/>
+                <MenuItem x:Name="Help_GS" Command="this:CustomCommands.HelpGS"/>
+                <MenuItem x:Name="Help_About" Command="this:CustomCommands.HelpAbout"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray DockPanel.Dock="Top" >
+            <ToolBar Band="1" BandIndex="1" Name="Actions">
+                <Button Name="Action_Save" ToolTip="Save" Command="ApplicationCommands.Save">
+                    <Image Source="res/actions/save.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="Action_Open" ToolTip="Open" Command="ApplicationCommands.Open">
+                    <Image Source="res/actions/open.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="Action_Settings" ToolTip="Settings" Command="this:CustomCommands.CircuitSettings">
+                    <Image Source="res/actions/settings.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="Action_Undo" ToolTip="Undo" Command="ApplicationCommands.Undo">
+                    <Image Source="res/actions/undo.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="Action_Redo" ToolTip="Redo" Command="ApplicationCommands.Redo">
+                    <Image Source="res/actions/redo.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="Action_ZoomIn" ToolTip="Zoom In" Command="NavigationCommands.IncreaseZoom">
+                    <Image Source="res/actions/zoomin.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="Action_ZoomOut" ToolTip="Zoom Out" Command="NavigationCommands.DecreaseZoom">
+                    <Image Source="res/actions/zoomout.png" Width="32" Height="32"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="2" Name="Toolbox">
+                <ToggleButton Name="Tool_SELECT" ToolTip="Select (Shift+Esc)" IsChecked="True" Command="this:CustomCommands.SelectToolSELECT">
+                    <Image Source="res/tools/select.png" Width="32" Height="32"/>
+                </ToggleButton>
+                <ToggleButton Name="Tool_INTERACT" ToolTip="Interact (Ctrl+I)" Command="this:CustomCommands.SelectToolINTERACT">
+                    <Image Source="res/tools/interact.png" Width="32" Height="32"/>
+                </ToggleButton>
+                <ToggleButton Name="Tool_COMPONENT" ToolTip="Place Component (Ctrl+A)" Command="this:CustomCommands.SelectToolCOMPONENT">
+                    <Image Source="res/tools/component.png" Width="32" Height="32"/>
+                </ToggleButton>
+                <ToggleButton Name="Tool_WIRE" ToolTip="Place Wire (Ctrl+W)" Command="this:CustomCommands.SelectToolWIRE">
+                    <Image Source="res/tools/wire.png" Width="32" Height="32"/>
+                </ToggleButton>
+                <ToggleButton Name="Tool_DELETE" ToolTip="Delete (Shift+Del)" Command="this:CustomCommands.SelectToolDELETE">
+                    <Image Source="res/tools/delete.png" Width="32" Height="32"/>
+                </ToggleButton>
+
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="2" Name="Simulation">
+                <Button Name="RunSimulation" ToolTip="Run" Command="this:CustomCommands.RunSimulation">
+                    <Image Source="res/actions/run.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="StopSimulation" ToolTip="Stop" Command="this:CustomCommands.StopSimulation">
+                    <Image Source="res/actions/stop.png" Width="32" Height="32"/>
+                </Button>
+                <Button Name="ShowHideGraph" ToolTip="Graph" Command="this:CustomCommands.ShowHideGraph">
+                    <Image Source="res/actions/graph.png" Width="32" Height="32"/>
+                </Button>
+            </ToolBar>
+
+        </ToolBarTray>
+        <Grid Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="95*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="148*"/>
+                <RowDefinition Height="91*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <TreeView x:Name="DevicePicker" Grid.Row="0" Grid.Column="0" SelectedItemChanged="DevicePicker_SelectedItemChanged" Grid.RowSpan="2" Margin="0,-5,0,5">
+                <TreeViewItem x:Name="Devices_Resistors" Header="Resistors"/>
+                <TreeViewItem x:Name="Devices_Capacitors" Header="Capacitors"/>
+                <TreeViewItem x:Name="Devices_ElectroCapacitors" Header="Electrolytic Capacitors"/>
+                
+                <TreeViewItem x:Name="Devices_Input" Header="Input Devices"/>
+                <Separator/>
+                <TreeViewItem x:Name="Devices_Diodes" Header="Diodes"/>
+                <TreeViewItem x:Name="Devices_NPN" Header="NPN Transistors"/>
+                <TreeViewItem x:Name="Devices_PNP" Header="PNP Transistors"/>
+                <TreeViewItem x:Name="Devices_NMOS" Header="N-channel MOSFETs"/>
+                <TreeViewItem x:Name="Devices_DigitalIC" Header="Digital ICs"/>
+                <TreeViewItem x:Name="Devices_AnalogIC" Header="Analog ICs"/>
+                <Separator/>
+
+                <TreeViewItem x:Name="Devices_Output" Header="Output Devices"/>
+
+            </TreeView>
+            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="CScroll" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                <Canvas x:Name="DrawArea" Background="LightYellow" Height="2000" Width="2000" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    
+                </Canvas>
+
+            </ScrollViewer>
+            <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
+                <StatusBarItem Width="300">
+                    <TextBlock x:Name="StatusText">Ready</TextBlock>
+                </StatusBarItem>
+                <Separator/>
+                <StatusBarItem>
+                    <TextBlock x:Name="Prompt">Select an object</TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+        </Grid>
+
+
+    </DockPanel>
+</Window>

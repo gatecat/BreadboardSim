@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<title>Included Digital ICs</title>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content">
+<h1>Included Digital ICs</h1>
+<p><a href="components.html">Back to Component List</a></p>
+<p>This document contains a list of all of the logic gates included in the simulator. The pinout and digital behaviour of these devices are designed to replicate the original devices as closely as possible, so you can refer to the original manufacturers' datasheets for further information.</p>
+<h3>Basic Logic Gates</h3>
+<p>The following basic logic gates are included:
+<ul>
+<li><strong>4001 NOR:</strong> four NOR gates</li>
+<li><strong>4011 NAND:</strong> four NAND gates</li>
+<li><strong>4069 NOT:</strong> six NOT gates</li>
+<li><strong>4070 XOR:</strong> four XOR gates</li>
+<li><strong>4071 OR:</strong> four OR gates</li>
+<li><strong>4081 AND:</strong> four AND gates</li>
+</ul></p>
+<p>All of the devices containing four logic gates have the same pin functions:</p>
+<table>
+<tr><th>Pin</th><th>Function</th><th>Pin</th><th>Function</th></tr>
+<tr><td>1</td><td>Gate A Input 1</td><td>14</td><td>Positive Supply</td></tr>
+<tr><td>2</td><td>Gate A Input 2</td><td>13</td><td>Gate D Input 1</td></tr>
+<tr><td>3</td><td>Gate A Output</td><td>12</td><td>Gate D Input 2</td></tr>
+<tr><td>4</td><td>Gate B Output</td><td>11</td><td>Gate D Output</td></tr>
+<tr><td>5</td><td>Gate B Input 2</td><td>10</td><td>Gate C Output</td></tr>
+<tr><td>6</td><td>Gate B Input 1</td><td>9</td><td>Gate C Input 2</td></tr>
+<tr><td>7</td><td>Ground</td><td>8</td><td>Gate C Input 1</td></tr>
+</table>
+<p>The 4069, which contains 6 NOT gates, has a different set of pin functions:</p>
+<table>
+<tr><th>Pin</th><th>Function</th><th>Pin</th><th>Function</th></tr>
+<tr><td>1</td><td>Gate A Input</td><td>14</td><td>Positive Supply</td></tr>
+<tr><td>2</td><td>Gate A Output</td><td>13</td><td>Gate F Input</td></tr>
+<tr><td>3</td><td>Gate B Input</td><td>12</td><td>Gate F Output</td></tr>
+<tr><td>4</td><td>Gate B Output</td><td>11</td><td>Gate E Input</td></tr>
+<tr><td>5</td><td>Gate C Input</td><td>10</td><td>Gate E Output</td></tr>
+<tr><td>6</td><td>Gate C Output</td><td>9</td><td>Gate D Input</td></tr>
+<tr><td>7</td><td>Ground</td><td>8</td><td>Gate D Output</td></tr>
+</table>
+<h3>Sequential Devices</h3>
+<h4>4013 D-type Flip Flop</h4>
+<p>The 4013 IC contains 2 D-type flip flops. Each flip flop has a total of four inputs: set, reset, data and clock; and two outputs: Q and /Q (often written as <span style="text-decoration: overline">Q</span>). The output Q is set to the internal state of the device, and /Q is Q inverted.</p>
+<p>When the set pin is high, the internal state of the device is set to 1, and when the reset pin is high, the internal state of the device is set to 0. When the clock pin goes from low to high, the internal state of the device is set to the value of the data pin.</p>
+<p>The pins of the 4013 are connected as follows:</p>
+<table>
+<tr><th>Pin</th><th>Function</th><th>Pin</th><th>Function</th></tr>
+<tr><td>1</td><td>Gate A Output Q</td><td>14</td><td>Positive Supply</td></tr>
+<tr><td>2</td><td>Gate A Output /Q (<span style="text-decoration: overline">Q</span>)</td><td>13</td><td>Gate B Output Q</td></tr>
+<tr><td>3</td><td>Gate A Clock Input<Br/>(rising edge triggered)</td><td>12</td><td>Gate B Output /Q (<span style="text-decoration: overline">Q</span>)</td></tr>
+<tr><td>4</td><td>Gate A Reset Input</td><td>11</td><td>Gate B Clock Input<Br/>(rising edge triggered)</td></tr>
+<tr><td>5</td><td>Gate A Data Input</td><td>10</td><td>Gate B Reset Input</td></tr>
+<tr><td>6</td><td>Gate A Set Input</td><td>9</td><td>Gate B Data Input</td></tr>
+<tr><td>7</td><td>Ground</td><td>8</td><td>Gate B Set Input</td></tr>
+</table>
+<h4>4017 Decade Counter</h4>
+<p>The 4017 IC is a decade counter: a counter that counts from 0 to 9 and then returns to 0. It has three inputs: Clock, Inhibit and Reset; 10 decoded counter outputs which represent the current value the counter is at; and a carry output for cascading counters.</p>
+<p>The counter value increments every time the clock pin from low to high, provided the inhibit pin is low. When reset is high, the counter value is set to zero and the clock pin will have no effect.</p><p>The carry output is low while outputs 5-9 are high and high while outputs 0-4 are high, meaning that one transition occurs every time the counter counts from 0 to 9, so that multiple counters can be connected together.</p> 
+<table>
+<tr><th>Pin</th><th>Function</th><th>Pin</th><th>Function</th></tr>
+<tr><td>1</td><td>Output 5</td><td>16</td><td>Positive Supply</td></tr>
+<tr><td>2</td><td>Output 1</td><td>15</td><td>Reset</td></tr>
+<tr><td>3</td><td>Output 0</td><td>14</td><td>Clock</td></tr>
+<tr><td>4</td><td>Output 2</td><td>13</td><td>Inhibit</td></tr>
+<tr><td>5</td><td>Output 6</td><td>12</td><td>Carry Out</td></tr>
+<tr><td>6</td><td>Output 7</td><td>11</td><td>Output 9</td></tr>
+<tr><td>7</td><td>Output 3</td><td>10</td><td>Output 4</td></tr>
+<tr><td>8</td><td>Ground</td><td>9</td><td>Output 8</td></tr>
+</table>
+<h4>4024 Binary Counter</h4>
+<p>The 4024 is a 7-bit binary ripple counter: it has 7 binary outputs. It has 2 inputs: clock and reset. When clock goes from high to low, the counter value increments by one, and when the reset input is high the value is set to zero.</p>
+<table>
+<tr><th>Pin</th><th>Function</th><th>Pin</th><th>Function</th></tr>
+<tr><td>1</td><td>Clock</td><td>14</td><td>Positive Supply</td></tr>
+<tr><td>2</td><td>Reset</td><td>13</td><td>Not Connected</td></tr>
+<tr><td>3</td><td>Output 7 (64)</td><td>12</td><td>Output 1 (1)</td></tr>
+<tr><td>4</td><td>Output 6 (32)</td><td>11</td><td>Output 2 (2)</td></tr>
+<tr><td>5</td><td>Output 5 (16)</td><td>10</td><td>Not Connected</td></tr>
+<tr><td>6</td><td>Output 4 (8)</td><td>9</td><td>Output 3 (4)</td></tr>
+<tr><td>7</td><td>Ground</td><td>8</td><td>Not Connected</td></tr>
+</table>
+<h3>Miscellaneous</h3>
+<h4>4511 Display Decoder</h4>
+<p>The 4511 takes a 4-bit BCD signal as an input (note that only input values 0-9 are valid) and outputs the signals needed to drive a 7-segment display. It also has three control inputs: Lamp Test, Blank and Latch.</p>
+<p>When the Lamp Test input goes low, all segments are turned on for test purposes. When the Blank input goes low, all segments are turned off. When the Latch pin goes high, the current input value is stored and changes to the input value will not affect the display until Latch is set back to low again. For normal use, Lamp Test and Blank should be high, and Latch should be low.</p>
+<table>
+<tr><th>Pin</th><th>Function</th><th>Pin</th><th>Function</th></tr>
+<tr><td>1</td><td>B Input (2)</td><td>16</td><td>Positive Supply</td></tr>
+<tr><td>2</td><td>C Input (4)</td><td>15</td><td>Segment f</td></tr>
+<tr><td>3</td><td>Lamp Test</td><td>14</td><td>Segment g</td></tr>
+<tr><td>4</td><td>Blank</td><td>13</td><td>Segment a</td></tr>
+<tr><td>5</td><td>Latch</td><td>12</td><td>Segment b</td></tr>
+<tr><td>6</td><td>D Input (8)</td><td>11</td><td>Segment c</td></tr>
+<tr><td>7</td><td>A Input (1)</td><td>10</td><td>Segment d</td></tr>
+<tr><td>8</td><td>Ground</td><td>9</td><td>Segment e</td></tr>
+</table>
+<p><a href="components.html">Back to Component List</a></p>
+</div>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<title>Creating Custom Components</title>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content">
+<h1>Creating Custom Components</h1>
+<p><a href="index.html">Back to Contents</a></p>
+<p>The simulator allows, through an XML-based file format, for custom components to be defined as subcircuits of other, fundamental, components. Custom graphics, if required for custom component packages, can also be created using a syntax based upon the WPF Path Markup Syntax (see <a href="https://msdn.microsoft.com/en-us/library/ms752293%28v=vs.110%29.aspx">Microsoft's reference</a>.) This section is intended primarily for "power users", so some basic familiarity with XML syntax is assumed.</p>
+<h3>Component Data Files</h3>
+<p>Files containing component models are located in the res/models/ folder in the folder where the program was installed to. Each file contains model for a different type of component:
+<ul>
+<li><strong>7seg.xml:</strong> 7-segment displays</li>
+<li><strong>diodes.xml:</strong> diodes</li>
+<li><strong>ics.xml:</strong> analog and digital ICs</li>
+<li><strong>leds.xml:</strong> LEDs</li>
+<li><strong>transistors.xml:</strong> NPN, PNP and NMOS transistors</li>
+</ul>
+</p>
+<p>A sample entry in one of these files is that for the 555 Timer, which is included below</p>
+<pre>&lt;model name=&quot;555 Timer&quot; category=&quot;Analog&quot; footprint=&quot;DIP8&quot;&gt;
+&lt;data&gt;RES {r}.R1 {8} {5}  res=5000
+RES {r}.R2 {5} {r}.VL res=5000
+RES {r}.R3 {r}.VL {1} res=5000
+OPAMP {r}.U1 {6} {5} {r}.UC {1} {8}
+OPAMP {r}.U2 {r}.VL {2} {r}.LC {1} {8}
+LOGIC_NOT {r}.U3 {4} {r}.R_INV {1} {8}
+LOGIC_OR {r}.U4 {r}.R_INV {r}.UC {r}.RES {1} {8}
+LOGIC_RS_FLIP_FLOP {r}.U5 {r}.RES {r}.LC {3} {r}.QB {1} {8}
+RES {r}.R4 {r}.QB {r}.DC res=1000
+BJT {r}.Q1 {7} {r}.DC {1} type=npn is=19e-15 bf=150 br=7.5 rb=50 re=0.4 rc=0.3&lt;/data&gt;
+&lt;label pin=&quot;1&quot; name=&quot;Ground&quot;/&gt;
+&lt;label pin=&quot;2&quot; name=&quot;Trigger&quot;/&gt;
+&lt;label pin=&quot;3&quot; name=&quot;Output&quot;/&gt;
+&lt;label pin=&quot;4&quot; name=&quot;Reset&quot;/&gt;
+&lt;label pin=&quot;5&quot; name=&quot;Control Voltage&quot;/&gt;
+&lt;label pin=&quot;6&quot; name=&quot;Threshold&quot;/&gt;
+&lt;label pin=&quot;7&quot; name=&quot;Discharge&quot;/&gt;
+&lt;label pin=&quot;8&quot; name=&quot;Supply&quot;/&gt;
+&lt;/model&gt;</pre>
+<p>Firstly, various pieces of information are specified about the component in the model tag parameters:
+<ul>
+<li><strong>name</strong> specifies a user-friendly name for the component. Integrated circuit labels only display the first word of the name</li>
+<li><strong>category</strong> allows parts to be specified into categories. For integrated circuits, this can be Analog or Digital. For transistors, this can be NPN, PNP or NMOS</li>
+<li><strong>footprint</strong> specifies the name of a footprint for the component (see below for custom footprints). The simulator includes the following standard IC and transistor footprints: DIP8, DIP14, DIP16, TO-92 and TO-220-GDS.</li>
+<li>LEDs and 7-segment displays also support an extra parameter: <strong>colour</strong> which, using HTML style syntax, specifies the fully illuminated colour.</li>
+</ul>
+</p>
+<p>Inside the &lt;data&gt; tags contain the subcircuit data itself, which is described in the next section.</p>
+<p>Each label tag specifies a user friendly name for a pin, with <strong>pin</strong> being the pin number and <strong>name</strong> being the label to display.</p>
+<h3>Defining Components</h3>
+<p>An example of a component defined as a subcircuit is a 555 Timer. The subcircuit data for this component is shown in the above section - refer to the content inside the &lt;data&gt; tags</p>
+
+<p>Each line defines a component. Component definitions consist of the following elements, in this order:
+<ul>
+<li>Component type (e.g. RES for resistor)</li>
+<li>Component name</li>
+<li>Name of net connected to each pin - see below for pin ordering</li>
+<li>Component parameters</li>
+</ul></p>
+<p>The following component types are supported by the simulator</p>
+<ul>
+<li><strong>RES:</strong> resistor</li>
+<li><strong>CAP:</strong> capacitor</li>
+<li><strong>DIODE:</strong> diode</li>
+<li><strong>BJT:</strong> bipolar (NPN or PNP) transistor</li>
+<li><strong>NMOS:</strong> N-channel MOSFET</li>
+<li><strong>OPAMP:</strong> op-amp</li>
+<li><strong>LOGIC_<em>type</em>:</strong> logic gate of a given type. Supported types are AND, OR, XOR, NOT, NAND, NOR, XNOR, DTYPE (D-type flip flop), DCOUNTER (decade counter), BRCOUNTER (7-bit binary ripple counter), RS_FLIP_FLOP, DISPDECODER (4511 style display decoder)</li>
+</ul>
+<p>The pin ordering for common components (where pin ordering is important) are as follows:
+<ul>
+<li><strong>Diodes:</strong> anode, cathode</li>
+<li><strong>BJTs:</strong> collector, base, emitter</li>
+<li><strong>N-channel MOSFETs:</strong> source, gate, drain</li>
+<li><strong>Op-amps:</strong> Non-inverting Input, Inverting Input, Output, Negative Supply, Positive Supply</li>
+<li><strong>Logic Gates:</strong> Inputs, Outputs, Ground, Positive Supply. In particular:
+
+<ul style="line-height:140%">
+<li><strong>AND, OR, XOR, NAND, NOR, XNOR:</strong> Inputs: A, B; Outputs: Q</li>
+<li><strong>NOT:</strong> Inputs: A; Outputs: Q</li>
+<li><strong>DTYPE:</strong> Inputs: D, CLK, S, R; Outputs: Q, <span style="text-decoration: overline">Q</span></li>
+<li><strong>DCOUNTER:</strong> Inputs: CLK, INHIBIT, RESET; Outputs: Q0-Q9, CARRY</li>
+<li><strong>BRCOUNTER:</strong> Inputs: CLK, RESET; Outputs: Q1-Q7</li>
+<li><strong>RS_FLIP_FLOP:</strong> Inputs: R, S; Outputs: Q, <span style="text-decoration: overline">Q</span></li>
+<li><strong>DISPDECODER:</strong> Inputs: BCD A-D, Latch, <span style="text-decoration: overline">Blank</span>, <span style="text-decoration: overline">Lamp Test</span>; Outputs: Segments a-g</li>
+</ul>
+</li>
+</ul>
+
+<p>The following parameters are supported: (note that all parameters are optional, although many parameters are effectively required)</p>
+<ul>
+<li><strong>Resistors:</strong> res=<em>resistance</em></li>
+<li><strong>Capacitors:</strong> cap=<em>capacitance</em> rser=<em>seriesResistance</em></li>
+<li><strong>Diodes:</strong> is=<em>saturationCurrent</em> n=<em>idealityFactor</em> rser=<em>seriesResistance</em></li>
+<li><strong>BJTs:</strong> type=(npn|pnp) is=<em>saturationCurrent</em> bf=<em>forwardGain</em> br=<em>reverseGain</em> rc=<em>collectorResistance</em> rb=<em>baseResistance</em> re=<em>emitterResistance</em></li>
+<li><strong>N-channel MOSFETs:</strong> k=<em>transconduction</em> lambda=<em>channelLengthModulation</em> vth=<em>thresholdVoltage</em> rgs=<em>gateSourceResistance</em></li>
+<li><strong>Op-amps:</strong> rin=<em>differentialInputResistance</em> aol=<em>openLoopGain</em> vosatp=<em>positiveSaturationVoltage</em> vosatn=<em>negativeSaturationVoltage</em> rout=<em>outputSeriesResistance</em></li>
+<li><strong>Logic Gates:</strong> vth=<em>thresholdVoltage</em> rin=<em>inputResistance</em> rout=<em>outputSeriesResistance</em></strong> </li>
+</ul>
+
+<p>Note that <tt>{r}</tt> is replaced with the unique (in the circuit) name of the component - for a custom IC this would be in the form ICn, where n is an integer, and <tt>{<em>n</em>}</tt> (where <em>n</em> is an integer between 1 and the number of pins) is replaced with the name of the net connected to pin <em>n</em>. In order to ensure multiple instances of the same subcircuit can be placed, all internal net and component names should be prefixed with "<tt>{r}.</tt>".</p> 
+<h3>Defining Component Footprints</h3>
+<p>If you need to add a component which has a package type not included in the default set of footprints, you will need to add an entry to the footprints.xml file. An example entry in this file, for the DIP8 package, is:</p>
+<pre>
+&lt;footprint name=&quot;DIP8&quot;&gt;
+&lt;!-- PINS --&gt;
+&lt;pin  number=&quot;1&quot; x=&quot;0&quot; y=&quot;3&quot;/&gt;
+&lt;pin  number=&quot;2&quot; x=&quot;1&quot; y=&quot;3&quot;/&gt;
+&lt;pin  number=&quot;3&quot; x=&quot;2&quot; y=&quot;3&quot;/&gt;
+&lt;pin  number=&quot;4&quot; x=&quot;3&quot; y=&quot;3&quot;/&gt;
+&lt;pin  number=&quot;5&quot; x=&quot;3&quot; y=&quot;0&quot;/&gt;
+&lt;pin  number=&quot;6&quot; x=&quot;2&quot; y=&quot;0&quot;/&gt;
+&lt;pin  number=&quot;7&quot; x=&quot;1&quot; y=&quot;0&quot;/&gt;
+&lt;pin  number=&quot;8&quot; x=&quot;0&quot; y=&quot;0&quot;/&gt;
+
+&lt;path name=&quot;pin8&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M -0.2, -0.2 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin7&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M 0.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin6&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M 1.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin5&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M 2.8, -0.2 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin1&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M -0.2, 2.6 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin2&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M 0.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin3&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M 1.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;path name=&quot;pin4&quot; fillcolour=&quot;Gray&quot; linecolour=&quot;Gray&quot;&gt;M 2.8, 2.6 h 0.4 v 0.6 h -0.4 v -0.6&lt;/path&gt;
+&lt;!-- CHIP BODY --&gt;
+&lt;path fillcolour=&quot;Black&quot; linecolour=&quot;Black&quot;&gt;M -0.4, 0.4 H 3.4 V 2.6 H -0.4 V 0.4&lt;/path&gt;
+&lt;!-- CHIP NOTCH --&gt;
+&lt;path fillcolour=&quot;DarkGray&quot; linecolour=&quot;DarkGray&quot;&gt;M -0.4, 1.2 H 0 V 1.8 H -0.4 V 1.2&lt;/path&gt;
+
+&lt;text name=&quot;_Model&quot; X=&quot;0.5&quot; Y=&quot;0.9&quot; size=&quot;1&quot; colour=&quot;White&quot;&gt;DIP8&lt;/text&gt;
+ 
+&lt;/footprint&gt;
+</pre>
+<p>All locations and sizes inside the footprint definition - in pin, path and text elements - are given in a format such at (0, 0) is the 'origin' of the component and each unit represents the space between two adjacent holes.</p>
+<p><tt>pin</tt> elements specify the location of a pin. It takes three attributes: the pin number, and the x and y locations of that pin.</p>
+<p><tt>path</tt> elements specify graphics using the <a href="https://msdn.microsoft.com/en-us/library/ms752293%28v=vs.110%29.aspx">WPF Path Markup Syntax</a>. The <tt>name</tt> attribute gives the name of the path. A name of the type <tt>pin<em>n</em></tt> sets that path to be a pin, where <em>n</em> is the pin number. This enables the tooltips that display pin names, voltages and currents.</p><p><tt>fillcolour</tt> sets the colour with which closed parts of the path are filled. <tt>linecolour</tt> sets the colour of the lines. Optionally, the <tt>thickness</tt> attribute can be set to change the line thickness. Inside the path element is the path data itself - see the Microsoft reference linked above.</p>
+<p><tt>text</tt> elements can be used to add text to the component. The <tt>name</tt> attribute can be used to make 'special' text elements - setting it to <tt>_Model</tt> makes it display the model name, and <tt>_Value</tt> makes it display the component value. <tt>X</tt> and <tt>Y</tt> set the position of the text, <tt>size</tt> sets the font size and colour the colour of the text. Optionally, the <tt>font</tt> attribute can be used to specify the name of a font  to use when displaying the text. Inside the element is the default text to display. All dimensions and positions use the units described above.</p>
+<p><a href="index.html">Back to Contents</a></p>
+</div>
+</html>

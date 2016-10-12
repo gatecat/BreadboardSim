@@ -1,0 +1,27 @@
+<breadboard>
+  <setting key="numberOfBreadboards" value="1" />
+  <setting key="simulationSpeed" value="1" />
+  <setting key="positiveRailVoltage" value="5" />
+  <setting key="negativeRailVoltage" value="-5" />
+  <component ref="IC1" type="Integrated Circuit" startX="210" startY="150" angle="0" model="555 Timer" />
+  <component ref="R1" type="Resistor" startX="240" startY="120" angle="0" value="100000" orientation="vert" length="-4" />
+  <component ref="C1" type="Electrolytic Capacitor" startX="165" startY="225" angle="0" value="0.0001" />
+  <component ref="SW1" type="Push Switch" startX="90" startY="240" angle="0" state="False" />
+  <component ref="R2" type="Resistor" startX="105" startY="60" angle="0" value="10000" orientation="vert" length="9" />
+  <component ref="R3" type="Resistor" startX="240" startY="225" angle="0" value="330" orientation="horiz" length="7" />
+  <component ref="D1" type="LED" startX="345" startY="195" angle="0" model="Red" />
+  <component ref="P1" type="Probe" startX="240" startY="255" angle="0" />
+  <component ref="P2" type="Probe" startX="165" startY="105" angle="0" />
+  <wire startX="211" startY="91" length="-2" orientation="vert" colour="#FFFF0000" />
+  <wire startX="211" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+  <wire startX="256" startY="211" length="1" orientation="horiz" colour="#FFFF0000" />
+  <wire startX="271" startY="196" length="-9" orientation="vert" colour="#FFFF0000" />
+  <wire startX="241" startY="136" length="-1" orientation="horiz" colour="#FF006400" />
+  <wire startX="226" startY="121" length="-4" orientation="horiz" colour="#FF006400" />
+  <wire startX="166" startY="151" length="3" orientation="vert" colour="#FF006400" />
+  <wire startX="181" startY="256" length="2" orientation="vert" colour="#FF000000" />
+  <wire startX="76" startY="211" length="-1" orientation="horiz" colour="#FF000000" />
+  <wire startX="61" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+  <wire startX="226" startY="211" length="-8" orientation="horiz" colour="#FF7CFC00" />
+  <wire startX="361" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+</breadboard>

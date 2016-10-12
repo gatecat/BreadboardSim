@@ -1,0 +1,20 @@
+<breadboard>
+  <setting key="numberOfBreadboards" value="1" />
+  <setting key="simulationSpeed" value="1" />
+  <setting key="positiveRailVoltage" value="5" />
+  <setting key="negativeRailVoltage" value="-5" />
+  <component ref="IC1" type="Integrated Circuit" startX="210" startY="150" angle="0" model="4001 NOR" />
+  <component ref="SW1" type="SPDT Switch" startX="75" startY="210" angle="0" state="True" />
+  <component ref="SW2" type="SPDT Switch" startX="165" startY="210" angle="0" state="True" />
+  <component ref="R1" type="Resistor" startX="240" startY="210" angle="0" value="330" orientation="horiz" length="9" />
+  <component ref="D1" type="LED" startX="375" startY="240" angle="0" model="Red" />
+  <wire startX="211" startY="91" length="-2" orientation="vert" colour="#FFFF0000" />
+  <wire startX="301" startY="256" length="2" orientation="vert" colour="#FF000000" />
+  <wire startX="61" startY="196" length="-9" orientation="vert" colour="#FFFF0000" />
+  <wire startX="151" startY="196" length="-9" orientation="vert" colour="#FFFF0000" />
+  <wire startX="91" startY="256" length="2" orientation="vert" colour="#FF000000" />
+  <wire startX="181" startY="256" length="2" orientation="vert" colour="#FF000000" />
+  <wire startX="76" startY="226" length="9" orientation="horiz" colour="#FFFFA500" />
+  <wire startX="226" startY="241" length="-4" orientation="horiz" colour="#FF4682B4" />
+  <wire startX="391" startY="256" length="2" orientation="vert" colour="#FF000000" />
+</breadboard>

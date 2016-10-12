@@ -1,0 +1,13 @@
+<breadboard>
+  <setting key="numberOfBreadboards" value="1" />
+  <setting key="simulationSpeed" value="1" />
+  <setting key="positiveRailVoltage" value="5" />
+  <setting key="negativeRailVoltage" value="-5" />
+  <component ref="Q1" type="PNP Transistor" startX="195" startY="210" angle="0" model="2N2907" />
+  <component ref="R1" type="Resistor" startX="180" startY="315" angle="0" value="100" orientation="vert" length="-4" />
+  <component ref="VR1" type="Potentiometer" startX="90" startY="150" angle="0" value="40000" setpoint="0.744303797468355" />
+  <wire startX="211" startY="256" length="2" orientation="vert" colour="#FF000000" />
+  <wire startX="76" startY="316" length="-4" orientation="vert" colour="#FF0000FF" />
+  <wire startX="91" startY="136" length="7" orientation="horiz" colour="#FF4682B4" />
+  <wire startX="196" startY="151" length="3" orientation="vert" colour="#FF4682B4" />
+</breadboard>

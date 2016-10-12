@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<title>Included Components</title>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content">
+<h1>Included Components</h1>
+<p><a href="index.html">Back to Contents</a></p>
+This document is designed to be a quick reference guide to the components included in Breadboard Simulator.
+
+<h3>Resistors</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/resistors.png"/></div>
+<p>The components panel includes resistors in the E6 series from 1Ω to 68MΩ. If you need a resistance not part of this range, you can place any resistor, then right click on it and select 'Properties' to change its resistance. The colour bands of a resistor represent the value of the resistor using the four band system and with the tolerance band fixed at 5% (Gold). Note that the tolerance is not actually simulated - all resistors are assumed to be perfect.</p>
+
+<h3>Capacitors</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/capacitor.png"/></div>
+<p>The components panel includes capacitors from 100pF to 470nF and electrolytic capacitors from 1µF to 4.7mF. Like resistors, the properties panel can be used to obtain a different value of capacitor. There are no differences from the simulation point of view between capacitors and electrolytic capacitors (electrolytic capacitors are not simulated as being polarity sensitive) - the only difference is the graphic used to display them.</p>
+
+<h3>Switches</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/switches.png"/></div>
+<p>Both push button and SPDT slide switches are included. Both can have their state changed by clicking on them with the 'Interact' tool (<img class="inline" src="images/icons/interact.png"/>). You can open or close a switch during the simulation, and the simulation will be updated accordingly. This means that you can wire a switch and LED in series and, while the simulation is running, use the switch to turn the LED on and off.</p>
+<p>Note that push switches are wired so that the two sets of pins perpendicular to the flat edge are connected together, as shown on the below diagram where the black rectangle represents connected pins.</p>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/pushswitch_2.png"/></div>
+
+<h3>Potentiometers</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/potentiometer.png"/></div>
+<p>Like switches, potentiometers can be adjusted using the 'Interact' tool. Clicking on a potentiometer with the 'Interact' tool opens a panel containing a slider, which can be dragged to change the value of a potentiometer, as shown in the image on the right. The dial of the potentiometer rotates as the value is changed. You can hover over the body of a potentiometer to see the current setting as a percentage.</p>
+<p>Potentiometers default to having a resistance of 10kΩ. This value can be changed by right clicking them and opening the properties dialog.</p>
+
+<h3>Light-Dependent Resistors</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/ldr.png"/></div>
+<p>Light-Dependent Resistors, or LDRs, can have their 'light level' changed in the same way that a potentiometer can be adjusted, but note that resistance is inversely related to light level and the relationship is not linear. The light level an LDR is set to can be seen by hovering over it.</p>
+
+<h3>Diodes</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/diodes.png"/></div>
+<p>The simulator supports the simulation of diodes using the Shockley Diode model, and includes two diode types built-in - the 1N4148 and 1N4001 diodes. Diodes are placed like resistors, as they have leads of changeable length. Like many real diode packages, the white band is closest to the cathode.</p>
+
+<h3>NPN and PNP Transistors</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/transistors.png"/></div>
+<p>The simulator includes both NPN and PNP transistors, using the Ebers-Moll model, with a total of four transistor types (2N2222 and 2N3904 for NPN and 2N2907 and 2N3906 for PNP). The pinout of these transistors is shown in the above image.</p>
+
+<h3>N-channel MOSFETs</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/mosfets.png"/></div>
+<p>The simulator includes N-channel MOSFETs, using the Shichman-Hodges equations. The pinout of MOSFETs is shown above. Note that the pin labels are included on the IRF530 package.</p>
+
+<h3>Digital Logic ICs</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/digital_ic.png"/></div>
+<p>The simulator contains a range of common 4000 series digital ICs. All of these ICs are modelled with an input threshold voltage (point at which an input is considered high) of 1.4V, an input resistance of 1MΩ and an output series resistance of 20Ω. Please see the <a href="digital_ics.html">full list of devices</a>, which is a seperate page. For any digital IC, you can hover over a pin to see a description of that pin's function.</p>
+
+<h3>555 Timer</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/555timer.png"/></div>
+<p>A 555 Timer model is included that supports all configurations of a standard 555 timer. It models the behaviour of a standard 555 Timer using a subcircuit of standard components.</p>
+
+<h3>Op-amps</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/opamp.png"/></div>
+<p>Several types of op-amps are included in Breadboard Simulator. Op-amps support both linear and comparator operation. Op-amp models include simulation of the output saturation voltage, so the outputs will not go entirely to the power rails. An ideal op-amp model is also included which does not simulate these real-world limitations.</p>
+
+<h3>LEDs</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/led.png"/></div>
+<p>The simulator includes 5 colours of LEDs. LEDs will light up during a simulation if there is current flowing through them, with the brightness being determined by the current. Maximum brightness is reached with a current of 10mA. Like a real LED, the flat edge indicates the cathode.</p>
+
+<h3>7-segment Displays</h3>
+<div class="screenshot-container-exsmall-left"><img class="screenshot" src="images/screenshots/7segment.png"/></div>
+<p>A red 7-segment display component is included, which is designed to be used in digital systems. Like LEDs, segments will light up if there is current flowing through them during a simulation. The pin connections of a 7-segment display follows that of most common real-world common cathode 7-segment displays.</p>
+<p><a href="index.html">Back to Contents</a></p>
+</div>
+</html>

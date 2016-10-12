@@ -1,0 +1,308 @@
+<models>
+<model name="555 Timer" category="Analog" footprint="DIP8">
+<data>RES {r}.R1 {8} {5}  res=5000
+RES {r}.R2 {5} {r}.VL res=5000
+RES {r}.R3 {r}.VL {1} res=5000
+OPAMP {r}.U1 {6} {5} {r}.UC {1} {8}
+OPAMP {r}.U2 {r}.VL {2} {r}.LC {1} {8}
+LOGIC_NOT {r}.U3 {4} {r}.R_INV {1} {8}
+LOGIC_OR {r}.U4 {r}.R_INV {r}.UC {r}.RES {1} {8}
+LOGIC_RS_FLIP_FLOP {r}.U5 {r}.RES {r}.LC {3} {r}.QB {1} {8}
+RES {r}.R4 {r}.QB {r}.DC res=1000
+BJT {r}.Q1 {7} {r}.DC {1} type=npn is=19e-15 bf=150 br=7.5 rb=50 re=0.4 rc=0.3</data>
+<label pin="1" name="Ground"/>
+<label pin="2" name="Trigger"/>
+<label pin="3" name="Output"/>
+<label pin="4" name="Reset"/>
+<label pin="5" name="Control Voltage"/>
+<label pin="6" name="Threshold"/>
+<label pin="7" name="Discharge"/>
+<label pin="8" name="Supply"/>
+</model>
+
+<model name="Op-amp (ideal)" category="Analog" footprint="DIP8-SMALLFONT">
+<data>
+OPAMP {r} {r}.inP {r}.inN {6} {4} {7} rin=1e12  vosatn=0 vosatp=0 rout=1
+RES {r}.R1 {3} {r}.inP res=1
+RES {r}.R2 {2} {r}.inN res=1</data>
+<label pin="1" name="No Connect"/>
+<label pin="2" name="Inverting Input"/>
+<label pin="3" name="Non-Inverting Input"/>
+<label pin="4" name="Negative Supply"/>
+<label pin="5" name="No Connect"/>
+<label pin="6" name="Output"/>
+<label pin="7" name="Positive Supply"/>
+<label pin="8" name="No Connect"/>
+</model>
+<model name="LM741 Op-amp" category="Analog" footprint="DIP8-SMALLFONT">
+<data>OPAMP {r} {r}.inP {r}.inN {6} {4} {7} rin=1e6  vosatn=1.5 vosatp=1 rout=20
+RES {r}.R1 {3} {r}.inP res=1
+RES {r}.R2 {2} {r}.inN res=1</data>
+<label pin="1" name="No Connect"/>
+<label pin="2" name="Inverting Input"/>
+<label pin="3" name="Non-Inverting Input"/>
+<label pin="4" name="Negative Supply"/>
+<label pin="5" name="No Connect"/>
+<label pin="6" name="Output"/>
+<label pin="7" name="Positive Supply"/>
+<label pin="8" name="No Connect"/>
+</model>
+
+
+<model name="TL074 Op-amp" category="Analog" footprint="DIP14">
+<data>OPAMP {r}a {r}.ainP {r}.ainN {1} {11} {4} rin=1e12 vosatp=1 vosatn=1 rout=20 
+RES {r}.R1a {3} {r}.ainP res=1
+RES {r}.R2a {2} {r}.ainN res=1
+OPAMP {r}b {r}.binP {r}.binN {7} {11} {4} rin=1e12 vosatp=1 vosatn=1 rout=20 
+RES {r}.R1b {5} {r}.binP res=1
+RES {r}.R2b {6} {r}.binN res=1
+OPAMP {r}c {r}.cinP {r}.cinN {8} {11} {4} rin=1e12 vosatp=1 vosatn=1 rout=20 
+RES {r}.R1c {10} {r}.cinP res=1
+RES {r}.R2c {9} {r}.cinN res=1
+OPAMP {r}d {r}.dinP {r}.dinN {14} {11} {4} rin=1e12 vosatp=1 vosatn=1 rout=20
+RES {r}.R1d {12} {r}.dinP res=1
+RES {r}.R2d {13} {r}.dinN res=1</data>
+<label pin="1" name="Output 1"/>
+<label pin="2" name="Inverting Input 1"/>
+<label pin="3" name="Non-Inverting Input 1"/>
+<label pin="4" name="Positive Supply"/>
+<label pin="5" name="Non-Inverting Input 2"/>
+<label pin="6" name="Inverting Input 2"/>
+<label pin="7" name="Output 2"/>
+<label pin="8" name="Output 3"/>
+<label pin="9" name="Inverting Input 3"/>
+<label pin="10" name="Non-Inverting Input 3"/>
+<label pin="11" name="Negative Supply"/>
+<label pin="12" name="Non-Inverting Input 4"/>
+<label pin="13" name="Inverting Input 4"/>
+<label pin="14" name="Output 4"/>
+</model>
+<model name="LM324 Op-amp" category="Analog" footprint="DIP14">
+<data>OPAMP {r}a {r}.ainP {r}.ainN {1} {11} {4} rin=2e6 vosatp=1 vosatn=0 rout=20 
+RES {r}.R1a {3} {r}.ainP res=1
+RES {r}.R2a {2} {r}.ainN res=1
+OPAMP {r}b {r}.binP {r}.binN {7} {11} {4} rin=2e6 vosatp=1 vosatn=0 rout=20 
+RES {r}.R1b {5} {r}.binP res=1
+RES {r}.R2b {6} {r}.binN res=1
+OPAMP {r}c {r}.cinP {r}.cinN {8} {11} {4} rin=2e6 vosatp=1 vosatn=0 rout=20 
+RES {r}.R1c {10} {r}.cinP res=1
+RES {r}.R2c {9} {r}.cinN res=1
+OPAMP {r}d {r}.dinP {r}.dinN {14} {11} {4} rin=2e6 vosatp=1 vosatn=0 rout=20 
+RES {r}.R1d {12} {r}.dinP res=1
+RES {r}.R2d {13} {r}.dinN res=1</data>
+<label pin="1" name="Output 1"/>
+<label pin="2" name="Inverting Input 1"/>
+<label pin="3" name="Non-Inverting Input 1"/>
+<label pin="4" name="Positive Supply"/>
+<label pin="5" name="Non-Inverting Input 2"/>
+<label pin="6" name="Inverting Input 2"/>
+<label pin="7" name="Output 2"/>
+<label pin="8" name="Output 3"/>
+<label pin="9" name="Inverting Input 3"/>
+<label pin="10" name="Non-Inverting Input 3"/>
+<label pin="11" name="Negative Supply"/>
+<label pin="12" name="Non-Inverting Input 4"/>
+<label pin="13" name="Inverting Input 4"/>
+<label pin="14" name="Output 4"/>
+</model>
+<!--BASIC GATES-->
+<model name="4001 NOR" category="Digital" footprint="DIP14">
+<data>LOGIC_NOR {r}a {1} {2} {3} {7} {14}
+LOGIC_NOR {r}b {6} {5} {4} {7} {14}
+LOGIC_NOR {r}c {8} {9} {10} {7} {14}
+LOGIC_NOR {r}d {13} {12} {11} {7} {14}</data>
+<label pin="1" name="Gate A Input 1"/>
+<label pin="2" name="Gate A Input 2"/>
+<label pin="3" name="Gate A Output"/>
+<label pin="4" name="Gate B Output"/>
+<label pin="5" name="Gate B Input 2"/>
+<label pin="6" name="Gate B Input 1"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate C Input 1"/>
+<label pin="9" name="Gate C Input 2"/>
+<label pin="10" name="Gate C Output"/>
+<label pin="11" name="Gate D Output"/>
+<label pin="12" name="Gate D Input 2"/>
+<label pin="13" name="Gate D Input 1"/>
+<label pin="14" name="Supply"/>
+</model>
+
+<model name="4011 NAND" category="Digital" footprint="DIP14">
+<data>LOGIC_NAND {r}a {1} {2} {3} {7} {14}
+LOGIC_NAND {r}b {6} {5} {4} {7} {14}
+LOGIC_NAND {r}c {8} {9} {10} {7} {14}
+LOGIC_NAND {r}d {13} {12} {11} {7} {14}</data>
+<label pin="1" name="Gate A Input 1"/>
+<label pin="2" name="Gate A Input 2"/>
+<label pin="3" name="Gate A Output"/>
+<label pin="4" name="Gate B Output"/>
+<label pin="5" name="Gate B Input 2"/>
+<label pin="6" name="Gate B Input 1"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate C Input 1"/>
+<label pin="9" name="Gate C Input 2"/>
+<label pin="10" name="Gate C Output"/>
+<label pin="11" name="Gate D Output"/>
+<label pin="12" name="Gate D Input 2"/>
+<label pin="13" name="Gate D Input 1"/>
+<label pin="14" name="Supply"/>
+</model>
+<model name="4069 NOT" category="Digital" footprint="DIP14">
+<data>LOGIC_NOT {r}a {1} {2} {7} {14}
+LOGIC_NOT {r}b {3} {4} {7} {14}
+LOGIC_NOT {r}c {5} {6} {7} {14}
+LOGIC_NOT {r}d {9} {8} {7} {14}
+LOGIC_NOT {r}e {11} {10} {7} {14}
+LOGIC_NOT {r}f {13} {12} {7} {14}</data>
+<label pin="1" name="Gate A Input"/>
+<label pin="2" name="Gate A Output"/>
+<label pin="3" name="Gate B Input"/>
+<label pin="4" name="Gate B Output"/>
+<label pin="5" name="Gate C Input"/>
+<label pin="6" name="Gate C Output"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate D Output"/>
+<label pin="9" name="Gate D Input"/>
+<label pin="10" name="Gate E Output"/>
+<label pin="11" name="Gate E Input"/>
+<label pin="12" name="Gate F Output"/>
+<label pin="13" name="Gate F Input"/>
+<label pin="14" name="Supply"/>
+</model>
+<model name="4070 XOR" category="Digital" footprint="DIP14">
+<data>LOGIC_XOR {r}a {1} {2} {3} {7} {14}
+LOGIC_XOR {r}b {6} {5} {4} {7} {14}
+LOGIC_XOR {r}c {8} {9} {10} {7} {14}
+LOGIC_XOR {r}d {13} {12} {11} {7} {14}</data>
+<label pin="1" name="Gate A Input 1"/>
+<label pin="2" name="Gate A Input 2"/>
+<label pin="3" name="Gate A Output"/>
+<label pin="4" name="Gate B Output"/>
+<label pin="5" name="Gate B Input 2"/>
+<label pin="6" name="Gate B Input 1"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate C Input 1"/>
+<label pin="9" name="Gate C Input 2"/>
+<label pin="10" name="Gate C Output"/>
+<label pin="11" name="Gate D Output"/>
+<label pin="12" name="Gate D Input 2"/>
+<label pin="13" name="Gate D Input 1"/>
+<label pin="14" name="Supply"/>
+</model>
+<model name="4071 OR" category="Digital" footprint="DIP14">
+<data>LOGIC_OR {r}a {1} {2} {3} {7} {14}
+LOGIC_OR {r}b {6} {5} {4} {7} {14}
+LOGIC_OR {r}c {8} {9} {10} {7} {14}
+LOGIC_OR {r}d {13} {12} {11} {7} {14}</data>
+<label pin="1" name="Gate A Input 1"/>
+<label pin="2" name="Gate A Input 2"/>
+<label pin="3" name="Gate A Output"/>
+<label pin="4" name="Gate B Output"/>
+<label pin="5" name="Gate B Input 2"/>
+<label pin="6" name="Gate B Input 1"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate C Input 1"/>
+<label pin="9" name="Gate C Input 2"/>
+<label pin="10" name="Gate C Output"/>
+<label pin="11" name="Gate D Output"/>
+<label pin="12" name="Gate D Input 2"/>
+<label pin="13" name="Gate D Input 1"/>
+<label pin="14" name="Supply"/>
+</model>
+<model name="4081 AND" category="Digital" footprint="DIP14">
+<data>LOGIC_AND {r}a {1} {2} {3} {7} {14} 
+LOGIC_AND {r}b {6} {5} {4} {7} {14} 
+LOGIC_AND {r}c {8} {9} {10} {7} {14} 
+LOGIC_AND {r}d {13} {12} {11} {7} {14} </data>
+<label pin="1" name="Gate A Input 1"/>
+<label pin="2" name="Gate A Input 2"/>
+<label pin="3" name="Gate A Output"/>
+<label pin="4" name="Gate B Output"/>
+<label pin="5" name="Gate B Input 2"/>
+<label pin="6" name="Gate B Input 1"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate C Input 1"/>
+<label pin="9" name="Gate C Input 2"/>
+<label pin="10" name="Gate C Output"/>
+<label pin="11" name="Gate D Output"/>
+<label pin="12" name="Gate D Input 2"/>
+<label pin="13" name="Gate D Input 1"/>
+<label pin="14" name="Supply"/>
+</model>
+<!-- SEQUENTIAL LOGIC -->
+<model name="4013 D Flip Flop" category="Digital" footprint="DIP14">
+<data>LOGIC_DTYPE {r}a {5} {3} {6} {4} {1} {2} {7} {14} 
+LOGIC_DTYPE {r}b {9} {11} {8} {10} {13} {12} {7} {14}</data>
+<label pin="1" name="Gate A Output Q"/>
+<label pin="2" name="Gate A Output /Q"/>
+<label pin="3" name="Gate A Clock Input"/>
+<label pin="4" name="Gate A Reset Input"/>
+<label pin="5" name="Gate A Data Input"/>
+<label pin="6" name="Gate A Set Input"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="Gate B Set Input"/>
+<label pin="9" name="Gate B Data Input"/>
+<label pin="10" name="Gate B Reset Input"/>
+<label pin="11" name="Gate B Clock Input"/>
+<label pin="12" name="Gate B Output /Q"/>
+<label pin="13" name="Gate B Output Q"/>
+<label pin="14" name="Supply"/>
+</model>
+<model name="4017 Decade Counter" category="Digital" footprint="DIP16">
+<data>LOGIC_DCOUNTER {r} {14} {13} {15} {3} {2} {4} {7} {10} {1} {5} {6} {9} {11} {12} {8} {16}</data>
+<label pin="1" name="Output 5"/>
+<label pin="2" name="Output 1"/>
+<label pin="3" name="Output 0"/>
+<label pin="4" name="Output 2"/>
+<label pin="5" name="Output 6"/>
+<label pin="6" name="Output 7"/>
+<label pin="7" name="Output 3"/>
+<label pin="8" name="Ground"/>
+<label pin="9" name="Output 8"/>
+<label pin="10" name="Output 4"/>
+<label pin="11" name="Output 9"/>
+<label pin="12" name="Carry Out"/>
+<label pin="13" name="Inhibit"/>
+<label pin="14" name="Clock"/>
+<label pin="15" name="Reset"/>
+<label pin="16" name="Supply"/>
+</model>
+<model name="4024 Binary Counter" category="Digital" footprint="DIP14">
+<data>LOGIC_BRCOUNTER {r} {1} {2} {12} {11} {9} {6} {5} {4} {3} {7} {14}</data>
+<label pin="1" name="Clock"/>
+<label pin="2" name="Reset"/>
+<label pin="3" name="Output 7"/>
+<label pin="4" name="Output 6"/>
+<label pin="5" name="Output 5"/>
+<label pin="6" name="Output 4"/>
+<label pin="7" name="Ground"/>
+<label pin="8" name="No Connect"/>
+<label pin="9" name="Output 3"/>
+<label pin="10" name="No Connect"/>
+<label pin="11" name="Output 2"/>
+<label pin="12" name="Output 1"/>
+<label pin="13" name="No Connect"/>
+<label pin="14" name="Supply"/>
+
+</model>
+<model name="4511 Display Decoder" category="Digital" footprint="DIP16">
+<data>LOGIC_DISPDECODER {r} {7} {1} {2} {6} {5} {4} {3} {13} {12} {11} {10} {9} {15} {14} {8} {16}</data>
+<label pin="1" name="B Input"/>
+<label pin="2" name="C Input"/>
+<label pin="3" name="Lamp Test"/>
+<label pin="4" name="Blank"/>
+<label pin="5" name="Latch"/>
+<label pin="6" name="D Input"/>
+<label pin="7" name="A Input"/>
+<label pin="8" name="Ground"/>
+<label pin="9" name="Segment e"/>
+<label pin="10" name="Segment d"/>
+<label pin="11" name="Segment c"/>
+<label pin="12" name="Segment b"/>
+<label pin="13" name="Segment a"/>
+<label pin="14" name="Segment g"/>
+<label pin="15" name="Segment f"/>
+<label pin="16" name="Supply"/>
+
+</model>
+</models>

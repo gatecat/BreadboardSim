@@ -1,0 +1,13 @@
+<breadboard>
+  <setting key="numberOfBreadboards" value="1" />
+  <setting key="simulationSpeed" value="1" />
+  <setting key="positiveRailVoltage" value="5" />
+  <setting key="negativeRailVoltage" value="-5" />
+  <component ref="D1" type="Diode" startX="300" startY="135" angle="0" model="1N4148" orientation="vert" length="4" />
+  <component ref="VR1" type="Potentiometer" startX="255" startY="150" angle="0" value="1000" setpoint="0" />
+  <component ref="R1" type="Resistor" startX="255" startY="105" angle="0" value="10000" orientation="horiz" length="3" />
+  <wire startX="301" startY="286" length="-2" orientation="vert" colour="#FF000000" />
+  <wire startX="271" startY="256" length="4" orientation="vert" colour="#FF0000FF" />
+  <wire startX="241" startY="211" length="-2" orientation="horiz" colour="#FFFF0000" />
+  <wire startX="211" startY="196" length="-9" orientation="vert" colour="#FFFF0000" />
+</breadboard>

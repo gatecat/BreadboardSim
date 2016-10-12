@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{90DD09C0-C67D-45A3-B399-4BCF8CC65F3C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ActualSim</RootNamespace>
+    <ProjectName>SimBackend</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <CustomBuildAfterTargets>Link</CustomBuildAfterTargets>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <CustomBuildAfterTargets>Link</CustomBuildAfterTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(SolutionDir)SimGUI\res\simbe.exe</Command>
+      <Outputs>$(SolutionDir)SimGUI\res\simbe.exe;%(Outputs)</Outputs>
+      <Inputs>$(OutDir)$(TargetName)$(TargetExt)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/Qpar-report:1  /Qvec-report:1 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <Profile>true</Profile>
+    </Link>
+    <CustomBuildStep>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(SolutionDir)SimGUI\res\simbe.exe</Command>
+      <Outputs>$(SolutionDir)SimGUI\res\simbe.exe;%(Outputs)</Outputs>
+      <Inputs>$(OutDir)$(TargetName)$(TargetExt)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SimBackend.cpp" />
+    <ClCompile Include="BJT.cpp" />
+    <ClCompile Include="Capacitor.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DCSolver.cpp" />
+    <ClCompile Include="Diode.cpp" />
+    <ClCompile Include="LogicGates.cpp" />
+    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Net.cpp" />
+    <ClCompile Include="Circuit.cpp" />
+    <ClCompile Include="NMOS.cpp" />
+    <ClCompile Include="Opamp.cpp" />
+    <ClCompile Include="ParameterSet.cpp" />
+    <ClCompile Include="Resistor.cpp" />
+    <ClCompile Include="TransientSolver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="DCSolver.h" />
+    <ClInclude Include="DiscreteSemis.h" />
+    <ClInclude Include="LogicGates.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="Opamp.h" />
+    <ClInclude Include="Net.h" />
+    <ClInclude Include="Circuit.h" />
+    <ClInclude Include="ParameterSet.h" />
+    <ClInclude Include="PassiveComponents.h" />
+    <ClInclude Include="TransientSolver.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

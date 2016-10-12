@@ -1,0 +1,4 @@
+<models>
+<model name="1N4148"><data>DIODE {r} {1} {2} is=4.35e-9 n=1.9 rser=0.65</data></model>
+<model name="1N4001"><data>DIODE {r} {1} {2} is=76.9e-12 n=1.45 rser=42e-3</data></model>
+</models>
